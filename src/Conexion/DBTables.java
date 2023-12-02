@@ -50,9 +50,13 @@ public class DBTables {
             statement.execute(sqlMaeTable);
             
             String sqlMatTable = """
-                                 CREATE TABLE IF NOT EXISTS Materia (
-                                 idMat VARCHAR(3) PRIMARY KEY,
-                                 nombMat VARCHAR(40));""";
+                                CREATE TABLE IF NOT EXISTS Materia (
+                                idMat VARCHAR(3) PRIMARY KEY,
+                                nombMat VARCHAR(40),
+                                hTeoMat INT,
+                                hPraMat INT,
+                                CHECK (LENGTH(idMat) = 3)
+                                )""";
             statement.execute(sqlMatTable);
             
             String sqlGruTable = """

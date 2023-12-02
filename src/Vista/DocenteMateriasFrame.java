@@ -6,18 +6,19 @@ package Vista;
 
 import Actions.ActionTableEvent;
 import Controlador.ControladorGruposAdministrador;
+import Controlador.ControladorMatAdministrador;
 import java.awt.event.ActionListener;
 
 /**
  *
  * @author Usuario
  */
-public class DocenteGruposFrame extends javax.swing.JFrame {
+public class DocenteMateriasFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form DocenteGruposFrame
      */
-    public DocenteGruposFrame() {
+    public DocenteMateriasFrame() {
         initComponents();
         
         /*Actions.ActionTableEvent event = new ActionTableEvent() {
@@ -37,8 +38,8 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
             }
             
         };*/
-        ControladorGruposAdministrador cga = new ControladorGruposAdministrador();
-        cga.mostrarGrupoAlumno(jTable1);
+        ControladorMatAdministrador cta = new ControladorMatAdministrador();
+        cta.mostrarGrupoAlumno(jTable1);
         //jTable1.getColumnModel().getColumn(3).setCellRenderer(new Actions.ActionTable());
         //jTable1.getColumnModel().getColumn(3).setCellEditor(new Actions.ActionTableEditor(event));
     }
@@ -67,7 +68,6 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,24 +139,24 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jTable1.setBackground(new java.awt.Color(245, 245, 245));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre de la Materia", "Materia", "Grupo"
+                "Materia", "Nombre de la Materia", "Horas Teoricas", "Horas Prácticas"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -167,7 +167,6 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jTable1.setFillsViewportHeight(true);
         jTable1.setMinimumSize(new java.awt.Dimension(100, 400));
         jTable1.setPreferredSize(new java.awt.Dimension(200, 160));
-        jTable1.setRowHeight(20);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -179,13 +178,13 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Tabla De Grupos");
+        jLabel9.setText("Tabla De Materias");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(36, 47, 155));
         jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Agregar Grupo");
+        jButton6.setText("Agregar Materia");
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -193,20 +192,7 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 110, 39));
-
-        jButton7.setBackground(new java.awt.Color(36, 47, 155));
-        jButton7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Ver Materias");
-        jButton7.setBorder(null);
-        jButton7.setBorderPainted(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 91, 39));
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 110, 39));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(63, 61, 86));
@@ -261,21 +247,16 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         
-        //ControladorGruposAdministrador CGA = new ControladorGruposAdministrador();
-        //CGA.seleccionarGrupoAlumno(jTable1);
+        ControladorMatAdministrador CMA = new ControladorMatAdministrador();
+        CMA.seleccionarGrupoAlumno(jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        DocenteMateriasFrame Frame = new DocenteMateriasFrame();
+        DocenteAltaMatFrame Frame = new DocenteAltaMatFrame();
         Frame.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -284,7 +265,6 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
