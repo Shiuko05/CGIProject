@@ -53,6 +53,8 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         txtncontrol1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtncontrol2 = new javax.swing.JTextField();
+        txtncontrol3 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -160,6 +162,17 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         });
         jPanel3.add(txtncontrol2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 110, -1));
 
+        txtncontrol3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtncontrol3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtncontrol3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 185, 180, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel11.setText("Identificador de Materia:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 165, -1, -1));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 600, 280));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
@@ -184,7 +197,7 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         ControladorAltaMateria CAM = new ControladorAltaMateria();
-        CAM.insertarMateria(this, txtncontrol, txtncontrol1, txtncontrol2);
+        CAM.insertarMateria(this, txtncontrol, txtncontrol1, txtncontrol2, txtncontrol3);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtncontrol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtncontrol1ActionPerformed
@@ -194,6 +207,10 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
     private void txtncontrol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtncontrol2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtncontrol2ActionPerformed
+
+    private void txtncontrol3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtncontrol3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtncontrol3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,6 +508,7 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -500,5 +518,6 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
     public javax.swing.JTextField txtncontrol;
     public javax.swing.JTextField txtncontrol1;
     public javax.swing.JTextField txtncontrol2;
+    public javax.swing.JTextField txtncontrol3;
     // End of variables declaration//GEN-END:variables
 }

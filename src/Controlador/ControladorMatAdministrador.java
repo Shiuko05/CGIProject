@@ -27,6 +27,43 @@ public class ControladorMatAdministrador {
         this.nomAlum = nomAlum;
     }
     String nomAlum; 
+
+    public String getIdMat() {
+        return idMat;
+    }
+
+    public void setIdMat(String idMat) {
+        this.idMat = idMat;
+    }
+
+    public String getNombMat() {
+        return nombMat;
+    }
+
+    public void setNombMat(String nombMat) {
+        this.nombMat = nombMat;
+    }
+
+    public Integer gethTeoMat() {
+        return hTeoMat;
+    }
+
+    public void sethTeoMat(Integer hTeoMat) {
+        this.hTeoMat = hTeoMat;
+    }
+
+    public Integer gethPraMat() {
+        return hPraMat;
+    }
+
+    public void sethPraMat(Integer hPraMat) {
+        this.hPraMat = hPraMat;
+    }
+    
+    String idMat;
+    String nombMat;
+    Integer hTeoMat;
+    Integer hPraMat;
    
     
     

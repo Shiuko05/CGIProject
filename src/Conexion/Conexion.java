@@ -6,6 +6,9 @@ package Conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +27,10 @@ public class Conexion {
     
     String cadena = "jdbc:mysql://"+ip+":"+port+"/"+bd;
     
+    public Conexion() {
+        conexion = conecta();
+    }
+    
     public Connection conecta(){
         
         try {
@@ -36,4 +43,18 @@ public class Conexion {
         }
         return conexion;
     }  
+    
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        if (conexion == null) {
+            throw new SQLException("La conexión no está establecida.");
+        }
+        return conexion.prepareStatement(sql);
+    }
+    
+    public Statement createStatement() throws SQLException {
+        if (conexion == null) {
+            throw new SQLException("La conexión no está establecida.");
+        }
+        return conexion.createStatement();
+    }
 }

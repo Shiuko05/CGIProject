@@ -66,6 +66,16 @@ public class DBTables {
                                  grupo VARCHAR(1),
                                  periodo VARCHAR(1),
                                  anio VARCHAR(4),
+                                 hlun VARCHAR(11),
+                                 hmar VARCHAR(11),
+                                 hmie VARCHAR(11),
+                                 hjue VARCHAR(11),
+                                 hvie VARCHAR(11),
+                                 slun VARCHAR(8),
+                                 smar VARCHAR(8),
+                                 smie VARCHAR(8),
+                                 sjue VARCHAR(8),
+                                 svie VARCHAR(8),
                                  FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
             statement.execute(sqlGruTable);
             

@@ -122,6 +122,11 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(63, 61, 86));
         jButton4.setText("Inicio");
         jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 25, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
@@ -267,7 +272,9 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        
+        DocenteAltaGrupo Frame = new DocenteAltaGrupo();
+        Frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -276,6 +283,13 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         Frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Inicio_Administrador Frame = new Inicio_Administrador();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

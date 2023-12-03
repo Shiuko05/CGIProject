@@ -30,13 +30,6 @@ public class ClassAppProject {
             // Crear las tablas si la conexión es exitosa
             dbTables.createTables(connection);
             
-            // Cerrar la conexión después de crear las tablas
-            try {
-                connection.close();
-                System.out.println("Conexión cerrada.");
-            } catch (SQLException error) {
-                System.out.println("Error al cerrar la conexión: " + error.getMessage());
-            }
         }
     }
 }

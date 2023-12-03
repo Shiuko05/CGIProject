@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteMateriasFrame;
 import Vista.Inicio_Administrador;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.SQLException;
@@ -21,11 +22,12 @@ import javax.swing.JTextField;
 public class ControladorAltaMateria {
     
     // Función para insertar datos en la tabla de Materias de la base de datos
-    public void insertarMateria(JFrame frame, JTextField txtncontrol, JTextField txtncontrol1, JTextField txtncontrol2) {
+    public void insertarMateria(JFrame frame, JTextField txtncontrol, JTextField txtncontrol1, JTextField txtncontrol2, JTextField txtncontrol3) {
         // Obtener los datos de los campos de texto
         String nombreMateria = txtncontrol.getText();
         int horasTeoricas = Integer.parseInt(txtncontrol1.getText());
         int horasPracticas = Integer.parseInt(txtncontrol2.getText());
+        String idMateria = txtncontrol3.getText();
 
         Conexion con = new Conexion();
 
@@ -52,7 +54,7 @@ public class ControladorAltaMateria {
         String consultaInsercion = "INSERT INTO Materia (idMat, nombMat, hTeoMat, hPraMat) VALUES (?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
-            csInsercion.setString(1, generarIdMateria(nombreMateria)); // Genera un id para la materia
+            csInsercion.setString(1, idMateria); // Genera un id para la materia
             csInsercion.setString(2, nombreMateria);
             csInsercion.setInt(3, horasTeoricas);
             csInsercion.setInt(4, horasPracticas);
@@ -60,8 +62,8 @@ public class ControladorAltaMateria {
             csInsercion.execute();
 
             JOptionPane.showMessageDialog(null, "La materia se agregó exitosamente");
-            Inicio_Administrador vistaPrincipalMaestro = new Inicio_Administrador();
-            vistaPrincipalMaestro.setVisible(true);
+            DocenteMateriasFrame docenteMateriasFrame = new DocenteMateriasFrame();
+            docenteMateriasFrame.setVisible(true);
             frame.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al agregar la materia: " + e.toString());

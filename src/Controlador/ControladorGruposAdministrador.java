@@ -8,10 +8,14 @@ import Conexion.Conexion;
 //import Vista.AltaAlumnos_Alumno;
 //import Vista.Horario_Administrador;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -115,4 +119,24 @@ public class ControladorGruposAdministrador {
         }
     }    
 
+    public ArrayList<ControladorMatAdministrador> getIdMat(){
+        Conexion objetoConexion = new Conexion();
+        Statement stmt;
+        ResultSet rs;
+        ArrayList<ControladorMatAdministrador> listaMateria = new ArrayList<>();
+        
+        try{
+            stmt = objetoConexion.createStatement();
+            rs = stmt.executeQuery("SELECT idMat FROM Materia");
+            
+            while(rs.next()){
+                ControladorMatAdministrador materia = new ControladorMatAdministrador();
+                materia.setIdMat(rs.getString("idMat"));
+                listaMateria.add(materia);
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"error: "+ e.toString());
+        }
+        return listaMateria;
+    }
 }
