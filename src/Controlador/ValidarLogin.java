@@ -24,7 +24,7 @@ public class ValidarLogin {
 
             Conexion objetoConexion = new Conexion();
 
-            String consulta = "select nControlAlum, alumno.paswd, nControlProf, profesor.paswd from alumno, profesor where nControlAlum = (?) and alumno.paswd = (?) or nControlProf = (?) and profesor.paswd = (?);";
+            String consulta = "SELECT nControlAlum, paswd, tipoUsuario FROM alumno WHERE nControlAlum = ? AND paswd = ?";
 
             ps = objetoConexion.conecta().prepareStatement(consulta);
 
@@ -32,29 +32,24 @@ public class ValidarLogin {
 
             ps.setString(1, usuario.getText());
             ps.setString(2, pswrd);
-            ps.setString(3, usuario.getText());
-            ps.setString(4, pswrd);
-
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                String nControlAlum = rs.getString("nControlAlum");
-                String nControlMae = rs.getString("nControlProf");
+                String tipoUsuario = rs.getString("tipoUsuario");
 
-                if (nControlAlum.equals( usuario.getText())) {
-                    JOptionPane.showMessageDialog(null, "Ingresando como alumno");
-                    Inicio_Alumno vistaPrincipalAlumno = new Inicio_Alumno();
-                    vistaPrincipalAlumno.setVisible(true);
-                } else if (nControlMae.equals(usuario.getText())) {
-                    JOptionPane.showMessageDialog(null, "Ingresando como profesor/administrador");
+                if (tipoUsuario.equals("Administrador")) {
+                    JOptionPane.showMessageDialog(null, "Ingresando como administrador");
                     Inicio_Administrador vistaPrincipalMaestro = new Inicio_Administrador();
                     vistaPrincipalMaestro.setVisible(true);
                     frame.dispose();
+                } else if (tipoUsuario.equals("Alumno")) {
+                    JOptionPane.showMessageDialog(null, "Ingresando como alumno");
+                    Inicio_Alumno vistaPrincipalAlumno = new Inicio_Alumno();
+                    vistaPrincipalAlumno.setVisible(true);
                 }
-            }
-            else {
-                JOptionPane.showMessageDialog(null,"Usuario incorrecto, intente de nuevo");
+            } else {
+                JOptionPane.showMessageDialog(null,"Usuario incorrecto o contraseña inválida, intente de nuevo");
             }
 
         } catch (Exception e) {
@@ -62,4 +57,6 @@ public class ValidarLogin {
         }
     }
 
+
+    
 }

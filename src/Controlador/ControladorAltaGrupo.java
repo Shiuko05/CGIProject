@@ -22,6 +22,7 @@ import javax.swing.JTextField;
  * @author Usuario
  */
 public class ControladorAltaGrupo {
+    String idGrupo;
     String idMat;
     String grupo;
     String periodo;
@@ -37,6 +38,14 @@ public class ControladorAltaGrupo {
     String sjue;
     String svie;
 
+    public String getIdGrupo() {
+        return idGrupo;
+    }
+    
+    public void setIdGrupo(String idGrupo){
+        this.idGrupo = idGrupo;
+    }
+    
     public String getIdMat() {
         return idMat;
     }

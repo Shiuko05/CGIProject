@@ -31,23 +31,12 @@ public class DBTables {
                                    fechaNacAlum DATE, 
                                    curpAlum VARCHAR(18), 
                                    nControlAlum VARCHAR(9), 
-                                   correoAlum VARCHAR(20),
-                                   fotoAlum BLOB, 
+                                   correoAlum VARCHAR(50),
+                                   fotoAlum BLOB,
+                                   tipoUsuario VARCHAR(13),
                                    paswd INT);""";
             statement.execute(sqlAlumnTable);
 
-            String sqlMaeTable = """
-                                 CREATE TABLE IF NOT EXISTS Profesor (
-                                 idProfesor INT PRIMARY KEY AUTO_INCREMENT, 
-                                 nombProf VARCHAR(30) NOT NULL, 
-                                 apePatProf VARCHAR(30), 
-                                 apeMatProf VARCHAR(30), 
-                                 fechaNacProf DATE, 
-                                 nControlProf VARCHAR(9), 
-                                 correoProf VARCHAR(20),
-                                 fotoProf BLOB, 
-                                 paswd INT);""";
-            statement.execute(sqlMaeTable);
             
             String sqlMatTable = """
                                 CREATE TABLE IF NOT EXISTS Materia (
