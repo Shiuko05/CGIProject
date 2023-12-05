@@ -5,6 +5,7 @@
 package Vista;
 
 import Actions.ActionTableEvent;
+import Controlador.ControladorAlumnoAdministrador;
 import Controlador.ControladorGruposAdministrador;
 import Controlador.ControladorMatAdministrador;
 import java.awt.event.ActionListener;
@@ -14,11 +15,11 @@ import java.awt.event.ActionListener;
  * @author Usuario
  */
 public class DocenteAlumnosGrupo extends javax.swing.JFrame {
-
+    private String grupo;
     /**
      * Creates new form DocenteGruposFrame
      */
-    public DocenteAlumnosGrupo() {
+    public DocenteAlumnosGrupo(String grupo) {
         initComponents();
         
         /*Actions.ActionTableEvent event = new ActionTableEvent() {
@@ -38,8 +39,8 @@ public class DocenteAlumnosGrupo extends javax.swing.JFrame {
             }
             
         };*/
-        ControladorMatAdministrador cta = new ControladorMatAdministrador();
-        cta.mostrarGrupoAlumno(jTable1);
+        ControladorAlumnoAdministrador caa = new ControladorAlumnoAdministrador();
+        caa.mostrarAlumno(jTable1, grupo);
         //jTable1.getColumnModel().getColumn(3).setCellRenderer(new Actions.ActionTable());
         //jTable1.getColumnModel().getColumn(3).setCellEditor(new Actions.ActionTableEditor(event));
     }
@@ -255,8 +256,6 @@ public class DocenteAlumnosGrupo extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         
-        ControladorMatAdministrador CMA = new ControladorMatAdministrador();
-        CMA.seleccionarGrupoAlumno(jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

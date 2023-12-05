@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteAlumnosGrupo;
 //import Vista.AltaAlumnos_Alumno;
 //import Vista.Horario_Administrador;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import javax.swing.JFrame;
 
 /**
  *
@@ -91,7 +93,7 @@ public class ControladorGruposAdministrador {
 
 
 
-    public void seleccionarGrupoAlumno(JTable tablaga){
+    public void seleccionarGrupoAlumno(JFrame frame, JTable tablaga){
         String grupoSeleccionado = "";
         try {
             int recorre = tablaga.getSelectedRow();
@@ -100,8 +102,9 @@ public class ControladorGruposAdministrador {
                 grupoSeleccionado = (String) tablaga.getValueAt(recorre, 1);
                 System.out.println("Grupo Seleccionado: " + grupoSeleccionado);
                 
-                
-                
+                DocenteAlumnosGrupo Frame = new DocenteAlumnosGrupo(grupoSeleccionado);
+                Frame.setVisible(true);
+                frame.dispose();
                 //AltaAlumnos_Alumno Frame = new AltaAlumnos_Alumno(grupoSeleccionado);
                 //Frame.setVisible(true);
                 //Frame.dispose();

@@ -57,4 +57,22 @@ public class Conexion {
         }
         return conexion.createStatement();
     }
+    
+    public void createDatabaseIfNotExists() {
+        try {
+            if (conexion != null) {
+                Statement statement = conexion.createStatement();
+
+                // Crear la base de datos si no existe
+                String createDBQuery = "CREATE DATABASE IF NOT EXISTS " + bd;
+                statement.executeUpdate(createDBQuery);
+
+                System.out.println("Base de datos creada exitosamente.");
+            } else {
+                System.out.println("No hay conexión a la base de datos.");
+            }
+        } catch (SQLException error) {
+            System.out.println("Error al crear la base de datos: " + error.getMessage());
+        }
+    }
 }

@@ -3,18 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorGruposAdministrador.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/Login.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Actions/ActionPanel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Actions/ActionTable.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Actions/ActionTableEvent.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/Inicio_Administrador.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteGruposPanel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Actions/ActionButton.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/ClassAppProject.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/Inicio_Alumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Actions/ActionTableEditor.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAlumnosGrupo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Conexion/DBTables.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAsignaAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAsignaAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAltaAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAlumnoAdministrador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAltaGrupo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ValidarLogin.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/ActivityDetailsForm.java</file>
             <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteGruposFrame.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAltaMateria.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorGruposAdministrador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/ActivityDetailsForm2.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAltaGrupo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAltaAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorMatAdministrador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteGruposAluPanel.java</file>
         </group>
     </open-files>
 </project-private>

@@ -293,8 +293,8 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         
-        //ControladorGruposAdministrador CGA = new ControladorGruposAdministrador();
-        //CGA.seleccionarGrupoAlumno(jTable1);
+        ControladorGruposAdministrador CGA = new ControladorGruposAdministrador();
+        CGA.seleccionarGrupoAlumno(this, jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

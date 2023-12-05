@@ -7,7 +7,6 @@ package Vista;
 import Conexion.Conexion;
 import Conexion.DBTables;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  *
@@ -29,7 +28,7 @@ public class ClassAppProject {
             
             // Crear las tablas si la conexión es exitosa
             dbTables.createTables(connection);
-            
+            //dbTables.crearUsuario();
         }
     }
 }

@@ -7,7 +7,10 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import com.mysql.cj.jdbc.CallableStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 /**
  *
  * @author TeamPiña
@@ -31,13 +34,11 @@ public class DBTables {
                                    fechaNacAlum DATE, 
                                    curpAlum VARCHAR(18), 
                                    nControlAlum VARCHAR(9), 
-                                   correoAlum VARCHAR(50),
-                                   fotoAlum BLOB,
-                                   tipoUsuario VARCHAR(13),
+                                   correoAlum VARCHAR(20),
+                                   fotoAlum BLOB, 
                                    paswd INT);""";
             statement.execute(sqlAlumnTable);
 
-            
             String sqlMatTable = """
                                 CREATE TABLE IF NOT EXISTS Materia (
                                 idMat VARCHAR(3) PRIMARY KEY,
@@ -47,7 +48,7 @@ public class DBTables {
                                 CHECK (LENGTH(idMat) = 3)
                                 )""";
             statement.execute(sqlMatTable);
-            
+
             String sqlGruTable = """
                                  CREATE TABLE IF NOT EXISTS Grupo (
                                  idGrupo VARCHAR(9) PRIMARY KEY,
@@ -67,7 +68,7 @@ public class DBTables {
                                  svie VARCHAR(8),
                                  FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
             statement.execute(sqlGruTable);
-            
+
             String sqlInsTable = """
                                  CREATE TABLE IF NOT EXISTS Inscribe (
                                  idInscribe INT PRIMARY KEY AUTO_INCREMENT,
@@ -80,7 +81,8 @@ public class DBTables {
                                  FOREIGN KEY (idGrupo) REFERENCES Grupo(idGrupo) ON DELETE CASCADE);""";
             statement.execute(sqlInsTable);
             
-        } catch(SQLException error){
+     
+        } catch (SQLException error) {
             System.out.println("Error al crear las tablas: " + error.getMessage());
         } finally {
             try {
@@ -92,4 +94,41 @@ public class DBTables {
             }
         }
     }
+    
+    public void crearUsuario() {
+        Conexion con = new Conexion();
+        String consultaVerificacion = "SELECT COUNT(*) FROM Profesor WHERE idProfesor = ?";
+        String consultaInsercion = "INSERT INTO Profesor(idProfesor, nombProf, nControlProf, paswd) VALUES (?, ?, ?, ?)";
+
+        try {
+            PreparedStatement psVerificacion = con.conecta().prepareStatement(consultaVerificacion);
+            psVerificacion.setInt(1, 1); // Cambiar "admin" por el valor que deseas verificar
+            ResultSet rs = psVerificacion.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+
+            if (count > 0) {
+                // El usuario ya existe
+            } else {
+                PreparedStatement psInsercion = con.conecta().prepareStatement(consultaInsercion);
+                psInsercion.setInt(1, 1);
+                psInsercion.setString(2, "Administrador");
+                psInsercion.setString(3, "admin");
+                psInsercion.setInt(4, 12345);
+
+                int filasAfectadas = psInsercion.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Usuario creado exitosamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al crear usuario");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al crear usuario");
+        }
+    }
+
+
 }

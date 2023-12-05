@@ -107,6 +107,11 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Regresar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 125, 40));
 
         lbllogo.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -413,6 +418,13 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DocenteGruposFrame Frame = new DocenteGruposFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
