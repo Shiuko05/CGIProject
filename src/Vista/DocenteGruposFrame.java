@@ -110,6 +110,11 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(63, 61, 86));
         jButton2.setText("Horario");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 25, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,6 +122,11 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(63, 61, 86));
         jButton3.setText("Actividades");
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 25, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,24 +156,24 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jTable1.setBackground(new java.awt.Color(245, 245, 245));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre de la Materia", "Materia", "Grupo"
+                "Nombre de la Materia", "Materia", "Grupo", "Alumnos Inscritos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -331,6 +341,20 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         Frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DocenteHorarioGrupos Frame = new DocenteHorarioGrupos();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DocenteActividadesFrame Frame = new DocenteActividadesFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -9,8 +9,10 @@ import Conexion.Conexion;
 //import Vista.Horario_Administrador;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -116,6 +118,22 @@ public class ControladorMatAdministrador {
                 String hTeoMat = rs.getString("hTeoMat");
                 String hPraMat = rs.getString("hPraMat");
                 model.addRow(new Object[]{idMat, nombMat, hTeoMat, hPraMat});
+            }
+            
+            // Ajustar el tamaño de las columnas
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(10);
+            
+            // Centrar el contenido de las columnas excepto la primera columna
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER); // Establece la alineación al centro
+
+            for (int i = 0; i < tabla.getColumnCount(); i++) {
+                if (i != 1) { // Centra todas las columnas excepto la segunda
+                    tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al mostrar registros: " + e.toString());

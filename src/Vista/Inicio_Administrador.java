@@ -325,6 +325,9 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 //        Horario_Administrador Frame = new Horario_Administrador();
 //        Frame.setVisible(true);
 //        this.dispose();
+        DocenteHorarioGrupos Frame = new DocenteHorarioGrupos();
+        Frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -342,6 +345,9 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 //        Actividades_Administrador Frame = new Actividades_Administrador();
 //        Frame.setVisible(true);
 //        this.dispose();
+        DocenteActividadesFrame Frame = new DocenteActividadesFrame();
+        Frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
