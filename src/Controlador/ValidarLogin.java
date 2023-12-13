@@ -24,7 +24,7 @@ public class ValidarLogin {
 
             Conexion objetoConexion = new Conexion();
 
-            String consulta = "SELECT nControlAlum, paswd, tipoUsuario FROM alumno WHERE nControlAlum = ? AND paswd = ?";
+            String consulta = "SELECT nControlAlum, paswd FROM alumno WHERE nControlAlum = ? AND paswd = ?";
 
             ps = objetoConexion.conecta().prepareStatement(consulta);
 
@@ -36,14 +36,14 @@ public class ValidarLogin {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                String tipoUsuario = rs.getString("tipoUsuario");
+                String tipoCuenta = rs.getString("nControlAlum");
 
-                if (tipoUsuario.equals("Administrador")) {
+                if (tipoCuenta.equals("admin")) {
                     JOptionPane.showMessageDialog(null, "Ingresando como administrador");
                     Inicio_Administrador vistaPrincipalMaestro = new Inicio_Administrador();
                     vistaPrincipalMaestro.setVisible(true);
                     frame.dispose();
-                } else if (tipoUsuario.equals("Alumno")) {
+                } else if (tipoCuenta.equals("alumno")) {
                     JOptionPane.showMessageDialog(null, "Ingresando como alumno");
                     Inicio_Alumno vistaPrincipalAlumno = new Inicio_Alumno();
                     vistaPrincipalAlumno.setVisible(true);

@@ -28,7 +28,7 @@ public class ClassAppProject {
             
             // Crear las tablas si la conexión es exitosa
             dbTables.createTables(connection);
-            //dbTables.crearUsuario();
+            dbTables.crearUsuario();
         }
     }
 }

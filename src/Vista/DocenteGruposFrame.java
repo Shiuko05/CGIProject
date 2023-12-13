@@ -7,6 +7,7 @@ package Vista;
 import Actions.ActionTableEvent;
 import Controlador.ControladorGruposAdministrador;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,14 +63,14 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,19 +116,19 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 25, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 25, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(63, 61, 86));
-        jButton3.setText("Actividades");
+        jButton3.setText("Materias");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 25, -1, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 25, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -146,7 +147,24 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jButton5.setForeground(new java.awt.Color(63, 61, 86));
         jButton5.setText("Utilerías");
         jButton5.setBorder(null);
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 25, -1, -1));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 25, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(63, 61, 86));
+        jButton6.setText("Actividades");
+        jButton6.setBorder(null);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 25, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -198,32 +216,6 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         jLabel9.setText("Tabla De Grupos");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jButton6.setBackground(new java.awt.Color(36, 47, 155));
-        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Asignar Alumno");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 110, 39));
-
-        jButton7.setBackground(new java.awt.Color(36, 47, 155));
-        jButton7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Ver Materias");
-        jButton7.setBorder(null);
-        jButton7.setBorderPainted(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 91, 39));
-
         jButton8.setBackground(new java.awt.Color(36, 47, 155));
         jButton8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
@@ -235,7 +227,7 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 110, 39));
+        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 110, 39));
 
         jButton9.setBackground(new java.awt.Color(36, 47, 155));
         jButton9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
@@ -248,7 +240,20 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 110, 39));
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 110, 39));
+
+        jButton10.setBackground(new java.awt.Color(36, 47, 155));
+        jButton10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Asignar Alumno");
+        jButton10.setBorder(null);
+        jButton10.setBorderPainted(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 110, 39));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(63, 61, 86));
@@ -307,20 +312,6 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         CGA.seleccionarGrupoAlumno(this, jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        DocenteAsignaAlumno Frame = new DocenteAsignaAlumno();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        DocenteMateriasFrame Frame = new DocenteMateriasFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Inicio_Administrador Frame = new Inicio_Administrador();
@@ -356,14 +347,27 @@ public class DocenteGruposFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "PROXIMAMENTE EN ENERO");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;

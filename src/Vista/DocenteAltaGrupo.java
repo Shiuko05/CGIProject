@@ -59,8 +59,6 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         lbllogo = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -125,14 +123,7 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
         });
         jPanel2.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 14, 57, 46));
 
-        jLabel8.setText("Nombre docente");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 23, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
-        jLabel11.setText("Docente");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 45, -1, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -722,7 +713,6 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -736,7 +726,6 @@ public class DocenteAltaGrupo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

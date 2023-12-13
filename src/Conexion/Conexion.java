@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ERIKA GARCIA
+ * @author usuario
  */
-public class Conexion {
+public final class Conexion {
     
     Connection conexion = null; 
     
@@ -29,20 +29,36 @@ public class Conexion {
     
     public Conexion() {
         conexion = conecta();
+        
     }
     
-    public Connection conecta(){
-        
+    public void crearBaseDeDatos() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(cadena,usuario,pass);
-            //JOptionPane.showMessageDialog(null, "Conexión exitosa");
-            
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: "+e.toString());
+            Connection tempConexion = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port, usuario, pass);
+
+            Statement statement = tempConexion.createStatement();
+            String sql = "CREATE DATABASE IF NOT EXISTS " + bd;
+            statement.executeUpdate(sql);
+
+            tempConexion.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return conexion;
-    }  
+    }
+
+    public Connection conecta() {
+        crearBaseDeDatos();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection tempConexion = DriverManager.getConnection(cadena, usuario, pass);
+            //JOptionPane.showMessageDialog(null, "Conexión exitosa");
+            return tempConexion;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    } 
     
     public PreparedStatement prepareStatement(String sql) throws SQLException {
         if (conexion == null) {
@@ -56,23 +72,5 @@ public class Conexion {
             throw new SQLException("La conexión no está establecida.");
         }
         return conexion.createStatement();
-    }
-    
-    public void createDatabaseIfNotExists() {
-        try {
-            if (conexion != null) {
-                Statement statement = conexion.createStatement();
-
-                // Crear la base de datos si no existe
-                String createDBQuery = "CREATE DATABASE IF NOT EXISTS " + bd;
-                statement.executeUpdate(createDBQuery);
-
-                System.out.println("Base de datos creada exitosamente.");
-            } else {
-                System.out.println("No hay conexión a la base de datos.");
-            }
-        } catch (SQLException error) {
-            System.out.println("Error al crear la base de datos: " + error.getMessage());
-        }
     }
 }

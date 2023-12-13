@@ -8,6 +8,7 @@ import Actions.ActionTableEvent;
 import Controlador.ControladorGruposAdministrador;
 import Controlador.ControladorMatAdministrador;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,11 +64,14 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,7 +97,7 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(36, 47, 155));
         jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Grupos");
+        jButton1.setText("Materias");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +105,7 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 15, 91, 39));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 91, 39));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -113,7 +117,7 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 25, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -125,7 +129,7 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 25, -1, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
@@ -137,14 +141,31 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 25, -1, -1));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(63, 61, 86));
         jButton5.setText("Utilerías");
         jButton5.setBorder(null);
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 25, -1, -1));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(63, 61, 86));
+        jButton6.setText("Grupos");
+        jButton6.setBorder(null);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,18 +217,44 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
         jLabel9.setText("Tabla De Materias");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jButton6.setBackground(new java.awt.Color(36, 47, 155));
-        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Agregar Materia");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setBackground(new java.awt.Color(36, 47, 155));
+        jButton8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Ver Unidades");
+        jButton8.setBorder(null);
+        jButton8.setBorderPainted(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 110, 39));
+        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 110, 39));
+
+        jButton9.setBackground(new java.awt.Color(36, 47, 155));
+        jButton9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Agregar Materia");
+        jButton9.setBorder(null);
+        jButton9.setBorderPainted(false);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 110, 39));
+
+        jButton10.setBackground(new java.awt.Color(36, 47, 155));
+        jButton10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Agregar Unidad");
+        jButton10.setBorder(null);
+        jButton10.setBorderPainted(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 110, 39));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(63, 61, 86));
@@ -257,9 +304,6 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DocenteGruposFrame Frame = new DocenteGruposFrame();
-        Frame.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -268,13 +312,6 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
         ControladorMatAdministrador CMA = new ControladorMatAdministrador();
         CMA.seleccionarGrupoAlumno(jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        DocenteAltaMatFrame Frame = new DocenteAltaMatFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -297,13 +334,43 @@ public class DocenteMateriasFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        DocenteUnidadesFrame Frame = new DocenteUnidadesFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        DocenteMateriasFrame Frame = new DocenteMateriasFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "PROXIMAMENTE EN ENERO");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -160,7 +160,7 @@ public class ControladorAltaGrupo {
     
     
     
-    // Función para insertar datos en la tabla de Materias de la base de datos
+    // Función para insertar datos en la tabla de Grupos de la base de datos
     public void insertarGrupo(JFrame frame, JComboBox jComboBox1, JTextField jTextField1, JTextField jTextField2, JTextField jTextField3, 
             JTextField jTextField4, JTextField jTextField5, JTextField jTextField6, JTextField jTextField7, JTextField jTextField8, 
             JTextField jTextField13, JTextField jTextField12, JTextField jTextField11, JTextField jTextField10, JTextField jTextField9) {
@@ -184,7 +184,7 @@ public class ControladorAltaGrupo {
 
         Conexion con = new Conexion();
 
-        // Consulta para verificar si la materia ya existe por su nombre
+        // Consulta para verificar si el grupo ya existe por su nombre
         String consultaExistencia = "SELECT COUNT(*) AS count FROM Grupo WHERE idGrupo = ?";
         try {
             java.sql.CallableStatement csExistencia = con.conecta().prepareCall(consultaExistencia);

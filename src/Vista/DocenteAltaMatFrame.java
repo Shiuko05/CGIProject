@@ -113,15 +113,20 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Alta de Materia");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 588, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre de la Materia:");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
+        txtncontrol.setBackground(new java.awt.Color(245, 245, 245));
+        txtncontrol.setForeground(new java.awt.Color(0, 0, 0));
         txtncontrol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtncontrolActionPerformed(evt);
@@ -141,9 +146,12 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Horas prácticas:");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
 
+        txtncontrol1.setBackground(new java.awt.Color(245, 245, 245));
+        txtncontrol1.setForeground(new java.awt.Color(0, 0, 0));
         txtncontrol1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtncontrol1ActionPerformed(evt);
@@ -152,9 +160,12 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         jPanel3.add(txtncontrol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 110, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Horas teoricas:");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
+        txtncontrol2.setBackground(new java.awt.Color(245, 245, 245));
+        txtncontrol2.setForeground(new java.awt.Color(0, 0, 0));
         txtncontrol2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtncontrol2ActionPerformed(evt);
@@ -162,6 +173,8 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         });
         jPanel3.add(txtncontrol2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 110, -1));
 
+        txtncontrol3.setBackground(new java.awt.Color(245, 245, 245));
+        txtncontrol3.setForeground(new java.awt.Color(0, 0, 0));
         txtncontrol3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtncontrol3ActionPerformed(evt);
@@ -170,6 +183,7 @@ public class DocenteAltaMatFrame extends javax.swing.JFrame {
         jPanel3.add(txtncontrol3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 185, 180, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Identificador de Materia:");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 165, -1, -1));
 

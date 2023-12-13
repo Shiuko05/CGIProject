@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 /**
  *
- * @author TeamPiña
+ * @author usuario
  */
 public class DBTables {
 
@@ -81,6 +81,26 @@ public class DBTables {
                                  FOREIGN KEY (idGrupo) REFERENCES Grupo(idGrupo) ON DELETE CASCADE);""";
             statement.execute(sqlInsTable);
             
+            String sqlActTable = """
+                                 CREATE TABLE IF NOT EXISTS Actividad (
+                                 idActividad INT PRIMARY KEY AUTO_INCREMENT,
+                                 tituloAct VARCHAR(30) NOT NULL,
+                                 tipoAct VARCHAR(20),
+                                 descAct VARCHAR(100),
+                                 califAsigAct INT,
+                                 fechaEntAct DATE,
+                                 pesoAct INT);""";
+            statement.execute(sqlActTable);
+            
+            String sqlUniTable = """                                 
+                                 CREATE TABLE IF NOT EXISTS Unidad (
+                                 idMat VARCHAR(3),
+                                 numUni INT,
+                                 tituloUni VARCHAR(45),
+                                 descUni VARCHAR(250),
+                                 hprog INT,
+                                 FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
+            statement.execute(sqlUniTable);
      
         } catch (SQLException error) {
             System.out.println("Error al crear las tablas: " + error.getMessage());
@@ -97,8 +117,8 @@ public class DBTables {
     
     public void crearUsuario() {
         Conexion con = new Conexion();
-        String consultaVerificacion = "SELECT COUNT(*) FROM Profesor WHERE idProfesor = ?";
-        String consultaInsercion = "INSERT INTO Profesor(idProfesor, nombProf, nControlProf, paswd) VALUES (?, ?, ?, ?)";
+        String consultaVerificacion = "SELECT COUNT(*) FROM Alumno WHERE idAlumno = ?";
+        String consultaInsercion = "INSERT INTO Alumno(idAlumno, nombAlum, nControlAlum, paswd) VALUES (?, ?, ?, ?)";
 
         try {
             PreparedStatement psVerificacion = con.conecta().prepareStatement(consultaVerificacion);
@@ -112,7 +132,7 @@ public class DBTables {
             } else {
                 PreparedStatement psInsercion = con.conecta().prepareStatement(consultaInsercion);
                 psInsercion.setInt(1, 1);
-                psInsercion.setString(2, "Administrador");
+                psInsercion.setString(2, "administrador");
                 psInsercion.setString(3, "admin");
                 psInsercion.setInt(4, 12345);
 
