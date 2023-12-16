@@ -7,6 +7,7 @@ package Controlador;
 import Conexion.Conexion;
 import Vista.DocenteActividadesFrame;
 import Vista.DocenteMateriasFrame;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
@@ -85,10 +86,10 @@ public class ControladorAltaAct {
         }
     }
     
-    public void modificarActividad(JFrame frame, JTextField jTextField7, JTextField jTextField2, JTextField jTextField6, JTextField jTextField3, 
+    public void modificarActividad(JFrame frame, JComboBox jComboBox3, JTextField jTextField2, JTextField jTextField6, JTextField jTextField3, 
             JComboBox jComboBox2, JTextField jTextField4, JTextField jTextField5) {
         // Obtener los datos de los campos de texto
-        int idActividad = Integer.parseInt(jTextField7.getText());
+        String tituloActC = jComboBox3.getSelectedItem().toString();
         String tituloAct = jTextField2.getText();
         int califAsigAct = Integer.parseInt(jTextField6.getText());
         String descAct = jTextField3.getText();
@@ -99,7 +100,7 @@ public class ControladorAltaAct {
         Conexion con = new Conexion();
 
         // Si la materia no existe, se procede a insertarla
-        String updateActividad = "UPDATE Actividad SET tituloAct = ?, tipoAct = ?, descAct = ?, califAsigAct = ?, fechaEntAct = ?, pesoAct = ? WHERE idActividad = ? ";
+        String updateActividad = "UPDATE Actividad SET tituloAct = ?, tipoAct = ?, descAct = ?, califAsigAct = ?, fechaEntAct = ?, pesoAct = ? WHERE tituloAct = ? ";
 
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(updateActividad);
@@ -109,7 +110,7 @@ public class ControladorAltaAct {
             csInsercion.setInt(4, califAsigAct);
             csInsercion.setString(5, fechaEntAct);
             csInsercion.setInt(6, pesoAct);
-            csInsercion.setInt(7, idActividad);
+            csInsercion.setString(7, tituloActC);
 
             csInsercion.execute();
 
@@ -119,6 +120,28 @@ public class ControladorAltaAct {
             frame.dispose();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al agregar la actividad: " + e.toString());
+        }
+    }
+    
+    public void eliminarActividad(JFrame frame, JComboBox jComboBox3){
+        String tituloAct = jComboBox3.getSelectedItem().toString();
+        
+        Conexion con = new Conexion();
+        String consulta = "DELETE FROM Actividad WHERE tituloAct = ?;";
+        
+        try {
+            CallableStatement cs = con.conecta().prepareCall(consulta);
+            cs.setString(1, tituloAct);
+            
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Registro eliminado");
+            
+            DocenteActividadesFrame Frame = new DocenteActividadesFrame();
+            Frame.setVisible(true);
+            frame.dispose();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se eliminó, error: "+e.toString());
         }
     }
 }

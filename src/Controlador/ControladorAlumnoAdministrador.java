@@ -5,10 +5,13 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteEditarAct;
+import Vista.DocenteEditarAlumno;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +33,7 @@ public class ControladorAlumnoAdministrador {
              "Inscribe.califFinal, Inscribe.tipoEval, Inscribe.repite " +
              "FROM Alumno " +
              "INNER JOIN Inscribe ON Alumno.idAlumno = Inscribe.idAlumno " +
-             "WHERE Inscribe.idGrupo = '"+ grupo +"'";
+             "WHERE Inscribe.idGrupo = '" + grupo + "'";
 
             Statement stmt = con.conecta().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -98,5 +101,34 @@ public class ControladorAlumnoAdministrador {
         }
         return listaGrupo;
     }
+    
+//    public void seleccionarAlumno(JFrame frame, JTable tablaga){
+//        String AlumnoSeleccionado = "";
+//        try {
+//            int recorre = tablaga.getSelectedRow();
+//
+//            if (recorre >= 0) {
+//                AlumnoSeleccionado = (String) tablaga.getValueAt(recorre, 3);
+//                System.out.println("Alumno Seleccionado: " + AlumnoSeleccionado);
+//
+//                DocenteEditarAlumno Frame = new DocenteEditarAlumno(AlumnoSeleccionado);
+//                Frame.setVisible(true);
+//                frame.dispose();
+//                //AltaAlumnos_Alumno Frame = new AltaAlumnos_Alumno(grupoSeleccionado);
+//                //Frame.setVisible(true);
+//                //Frame.dispose();
+//
+//                //Frame.txtnombre.setText((String) tablaga.getValueAt(recorre, 2));
+//               // paraid.setText(paratabla.getValueAt(recorre, 0).toString());
+//
+//
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+//            }
+//
+//        } catch (Exception e){
+//            JOptionPane.showMessageDialog(null, "Error al seleccionar :"+e.toString());
+//        }
+//    }
 
 }

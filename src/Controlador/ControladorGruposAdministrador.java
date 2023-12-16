@@ -67,7 +67,7 @@ public class ControladorGruposAdministrador {
     
     //------------------------
     
-    public void mostrarGrupoAlumno(JTable tablaga) {
+    public void mostrarGrupos(JTable tablaga) {
         Conexion con = new Conexion();
         DefaultTableModel model = new DefaultTableModel();
         tablaga.setModel(model);

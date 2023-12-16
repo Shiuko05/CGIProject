@@ -2,7 +2,6 @@ package Controlador;
 
 import Conexion.Conexion;
 import Vista.Inicio_Administrador;
-import Vista.Inicio_Alumno;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,8 +44,7 @@ public class ValidarLogin {
                     frame.dispose();
                 } else if (tipoCuenta.equals("alumno")) {
                     JOptionPane.showMessageDialog(null, "Ingresando como alumno");
-                    Inicio_Alumno vistaPrincipalAlumno = new Inicio_Alumno();
-                    vistaPrincipalAlumno.setVisible(true);
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(null,"Usuario incorrecto o contraseña inválida, intente de nuevo");

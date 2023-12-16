@@ -5,12 +5,14 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteGruposFrame;
 import Vista.DocenteMateriasFrame;
 import Vista.Inicio_Administrador;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -94,6 +96,60 @@ public class ControladorAltaMateria {
         }
 
         return ""; // En caso de que no haya palabras
+    }
+    
+    public void modificarMateria(JFrame frame, JComboBox jComboBox2, JTextField jTextField1, JTextField jTextField2, JTextField jTextField3, JTextField jTextField4) {
+        // Obtener los datos de los campos de texto
+        String nombreMateria = jTextField2.getText();
+        int horasTeoricas = Integer.parseInt(jTextField3.getText());
+        int horasPracticas = Integer.parseInt(jTextField4.getText());
+        String idMat = jTextField1.getText(); 
+        String idMatC = jComboBox2.getSelectedItem().toString();
+
+        Conexion con = new Conexion();
+
+        // Si la materia no existe, se procede a insertarla
+        String updateAlumno = "UPDATE Materia SET idMat = ?, nombMat = ?, hTeoMat = ?, hPraMat = ? WHERE idMat = ? ";
+
+        try {
+            java.sql.CallableStatement csInsercion = con.conecta().prepareCall(updateAlumno);
+            csInsercion.setString(1, idMat); 
+            csInsercion.setString(2, nombreMateria);
+            csInsercion.setInt(3, horasTeoricas);
+            csInsercion.setInt(4, horasPracticas);
+            csInsercion.setString(5, idMatC);
+
+            csInsercion.execute();
+
+            JOptionPane.showMessageDialog(null, "La materia se modificó correctamente");
+            DocenteMateriasFrame Frame = new DocenteMateriasFrame();
+            Frame.setVisible(true);
+            frame.dispose();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar la materia: " + e.toString());
+        }
+    }
+     
+    public void eliminarAlumno(JFrame frame, JComboBox jComboBox2){
+        String idMat = jComboBox2.getSelectedItem().toString();
+         
+        Conexion con = new Conexion();
+        String consulta = "DELETE FROM materia WHERE idMat = ?;";
+        
+        try {
+            java.sql.CallableStatement cs = con.conecta().prepareCall(consulta);
+            cs.setString(1, idMat);
+            
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Registro eliminado");
+            
+            DocenteMateriasFrame Frame = new DocenteMateriasFrame();
+            Frame.setVisible(true);
+            frame.dispose();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se eliminó, error: "+e.toString());
+        }
     }
 
 }

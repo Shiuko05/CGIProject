@@ -6,6 +6,7 @@ package Controlador;
 
 import Conexion.Conexion;
 import Vista.DocenteGruposFrame;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -43,6 +44,25 @@ public class ControladorAsignaAlumno {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al obtener el ID del alumno: " + e.toString());
+            return;
+        }
+        
+        // Verificar si el número de control ya existe en la base de datos
+        String consultaExistencia = "SELECT COUNT(*) AS count FROM inscribe WHERE idAlumno = ?";
+        try {
+            CallableStatement csExistencia = con.conecta().prepareCall(consultaExistencia);
+            csExistencia.setInt(1, idAlumno);
+            ResultSet rs = csExistencia.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                if (count > 0) {
+                    JOptionPane.showMessageDialog(null, "El Alumno ya ha sido asignado en el grupo");
+                    return; // No se inserta si el número de control ya existe
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar existencia del número de control: " + e.toString());
             return;
         }
 

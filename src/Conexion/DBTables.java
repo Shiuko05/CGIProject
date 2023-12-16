@@ -34,7 +34,7 @@ public class DBTables {
                                    fechaNacAlum DATE, 
                                    curpAlum VARCHAR(18), 
                                    nControlAlum VARCHAR(9), 
-                                   correoAlum VARCHAR(20),
+                                   correoAlum VARCHAR(80),
                                    fotoAlum BLOB, 
                                    paswd INT);""";
             statement.execute(sqlAlumnTable);
@@ -99,8 +99,36 @@ public class DBTables {
                                  tituloUni VARCHAR(45),
                                  descUni VARCHAR(250),
                                  hprog INT,
+                                 INDEX idx_numUni (numUni),
                                  FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
             statement.execute(sqlUniTable);
+            
+            String sqlRealizaTable = """
+                                     CREATE TABLE IF NOT EXISTS Realiza (
+                                     idRealiza INT PRIMARY KEY AUTO_INCREMENT,
+                                     idActividad INT,
+                                     idMat VARCHAR(3),
+                                     idUni INT,
+                                     idAlumno INT,
+                                     califObtAlum INT,
+                                     observa VARCHAR(100),
+                                     FOREIGN KEY (idActividad) REFERENCES Actividad(idActividad) ON DELETE CASCADE,
+                                     FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUni) REFERENCES Unidad(numUni) ON DELETE CASCADE,
+                                     FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
+            statement.execute(sqlRealizaTable);
+            
+            String sqlObtieneTable = """
+                                     CREATE TABLE IF NOT EXISTS Obtiene (
+                                     idObtiene INT PRIMARY KEY AUTO_INCREMENT,
+                                     idMat VARCHAR(3),
+                                     idUni INT,
+                                     idAlumno INT,
+                                     califFinalUni INT,
+                                     FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUni) REFERENCES Unidad(numUni) ON DELETE CASCADE,
+                                     FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
+            statement.execute(sqlObtieneTable);
      
         } catch (SQLException error) {
             System.out.println("Error al crear las tablas: " + error.getMessage());

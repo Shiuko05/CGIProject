@@ -5,6 +5,9 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteActividadesFrame;
+import Vista.DocenteAlumnosFrame;
+import Vista.DocenteGruposFrame;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -13,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /**
@@ -147,11 +152,50 @@ public class ControladorAltaAlumno {
             JOptionPane.showMessageDialog(null, "Error al agregar: " + e.toString());
         }
     }
-
      
-     public void eliminarAlumno(JTextField ptxtncontrol){
-         setNumcontrol(ptxtncontrol.getText());
-         
+    public void modificarAlumno(JFrame frame, JTextField jTextField1, JTextField jTextField2, JTextField jTextField3, JTextField jTextField4, 
+            JComboBox jComboBox4, JTextField jTextField6, JTextField jTextField7, JTextField jTextField8, JTextField jTextField9) {
+        // Obtener los datos de los campos de texto
+        String nombAlum = jTextField1.getText();
+        String apePatAlum = jTextField2.getText();
+        String apeMatAlum = jTextField3.getText();
+        String curpAlum = jTextField4.getText();
+        String nControlAlum = jComboBox4.getSelectedItem().toString();
+        String nControlAlumT = jTextField9.getText();
+        int semestreAlum = Integer.parseInt(jTextField6.getText());
+        String fechaNacAlum = jTextField7.getText();    
+        String correoAlum = jTextField8.getText();    
+
+        Conexion con = new Conexion();
+
+        // Si la materia no existe, se procede a insertarla
+        String updateAlumno = "UPDATE Alumno SET nombAlum = ?, apePatAlum = ?, apeMatAlum = ?, semestreAlum = ?, fechaNacAlum = ?, curpAlum = ?, nControlAlum = ?, correoAlum = ? WHERE nControlAlum = ? ";
+
+        try {
+            java.sql.CallableStatement csInsercion = con.conecta().prepareCall(updateAlumno);
+            csInsercion.setString(1, nombAlum); 
+            csInsercion.setString(2, apePatAlum);
+            csInsercion.setString(3, apeMatAlum);
+            csInsercion.setInt(4, semestreAlum);
+            csInsercion.setString(5, fechaNacAlum);
+            csInsercion.setString(6, curpAlum);
+            csInsercion.setString(7, nControlAlumT);
+            csInsercion.setString(8, correoAlum);
+            csInsercion.setString(9, nControlAlum);
+
+            csInsercion.execute();
+
+            JOptionPane.showMessageDialog(null, "El alumno se modificó correctamente");
+            DocenteGruposFrame Frame = new DocenteGruposFrame();
+            Frame.setVisible(true);
+            frame.dispose();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar al alumno: " + e.toString());
+        }
+    }
+     
+    public void eliminarAlumno(JFrame frame, JComboBox ptxtncontrol){
+        setNumcontrol(ptxtncontrol.getSelectedItem().toString());
          
         Conexion con = new Conexion();
         String consulta = "DELETE FROM alumno WHERE alumno.nControlAlum = ?;";
@@ -162,6 +206,9 @@ public class ControladorAltaAlumno {
             
             cs.execute();
             JOptionPane.showMessageDialog(null, "Registro eliminado");
+            DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
+            Frame.setVisible(true);
+            frame.dispose();
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se eliminó, error: "+e.toString());

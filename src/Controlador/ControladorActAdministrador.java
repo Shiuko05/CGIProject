@@ -100,9 +100,9 @@ public class ControladorActAdministrador {
                 grupoSeleccionado = (String) tablaga.getValueAt(recorre, 0);
                 System.out.println("Actividad Seleccionada: " + grupoSeleccionado);
 
-                DocenteEditarAct Frame = new DocenteEditarAct(grupoSeleccionado);
-                Frame.setVisible(true);
-                frame.dispose();
+//                DocenteEditarAct Frame = new DocenteEditarAct(grupoSeleccionado);
+//                Frame.setVisible(true);
+//                frame.dispose();
                 //AltaAlumnos_Alumno Frame = new AltaAlumnos_Alumno(grupoSeleccionado);
                 //Frame.setVisible(true);
                 //Frame.dispose();

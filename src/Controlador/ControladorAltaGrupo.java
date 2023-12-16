@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import Vista.DocenteAlumnosFrame;
 import Vista.DocenteGruposFrame;
 import Vista.DocenteMateriasFrame;
 import Vista.Inicio_Administrador;
@@ -12,6 +13,8 @@ import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -251,6 +254,97 @@ public class ControladorAltaGrupo {
 
         return concatenatedId.toUpperCase(); // Convertir a mayúsculas
     }
+    
+    public void modificarGrupo(JFrame frame, JComboBox jComboBox1, JComboBox jComboBox2, JTextField jTextField2, JTextField jTextField3, 
+            JTextField jTextField4, JTextField jTextField5, JTextField jTextField6, JTextField jTextField7, JTextField jTextField8, 
+            JTextField jTextField13, JTextField jTextField12, JTextField jTextField11, JTextField jTextField10, JTextField jTextField9) {
+        // Obtener los datos de los campos de texto
+        String idMat = jComboBox1.getSelectedItem().toString();
+        String idGrupoC = jComboBox2.getSelectedItem().toString();
+        String periodo = jTextField2.getText();
+        
+        String anio = jTextField3.getText();
+        String hlun = jTextField4.getText();
+        String hmar = jTextField5.getText();
+        String hmie = jTextField6.getText();
+        String hjue = jTextField7.getText();
+        String hvie = jTextField8.getText();
+        
+        String slun = jTextField13.getText();
+        String smar = jTextField12.getText();
+        String smie = jTextField11.getText();
+        String sjue = jTextField10.getText();
+        String svie = jTextField9.getText();
 
+        Conexion con = new Conexion();
+
+        // Consulta para verificar si el grupo ya existe por su nombre
+        String consultaExistencia = "SELECT COUNT(*) AS count FROM Grupo WHERE idGrupo = ?";
+        try {
+            java.sql.CallableStatement csExistencia = con.conecta().prepareCall(consultaExistencia);
+            csExistencia.setString(1, generarIdGrupo(idMat, grupo, Integer.parseInt(periodo), Integer.parseInt(anio)));
+            ResultSet rs = csExistencia.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                if (count > 0) {
+                    JOptionPane.showMessageDialog(null, "La materia ya existe en la base de datos");
+                    return; // No se inserta si la materia ya existe
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar existencia de la materia: " + e.toString());
+            return;
+        }
+
+        // Si la materia no existe, se procede a insertarla
+        String consultaInsercion = "UPDATE grupo SET hlun = ?, hmar = ?, hmie = ?, hjue = ?, "
+                + "hvie = ?, slun = ?, smar = ?, smie = ?, sjue = ?, svie = ? WHERE idGrupo = ?";
+        
+        try {
+            java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
+            csInsercion.setString(1, hlun);
+            csInsercion.setString(2, hmar);
+            csInsercion.setString(3, hmie);
+            csInsercion.setString(4, hjue);
+            csInsercion.setString(5, hvie);
+            csInsercion.setString(6, slun);
+            csInsercion.setString(7, smar);
+            csInsercion.setString(8, smie);
+            csInsercion.setString(9, sjue);
+            csInsercion.setString(10, svie);
+            csInsercion.setString(11, idGrupoC);
+            
+            csInsercion.execute();
+
+            JOptionPane.showMessageDialog(null, "El grupo se actualizó exitosamente");
+            DocenteGruposFrame Frame = new DocenteGruposFrame();
+            Frame.setVisible(true);
+            frame.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el grupo: " + e.toString());
+        }
+    }
+
+    public static ArrayList<String> obtenerGrupoPorIdMat(String idMat) {
+        Conexion objetoConexion = new Conexion();
+        Statement stmt;
+        ResultSet rs;
+        ArrayList<String> unidades = new ArrayList<>();
+
+        try {
+            stmt = objetoConexion.createStatement();
+            rs = stmt.executeQuery("SELECT idGrupo FROM grupo WHERE idMat = '" + idMat + "'");
+
+            while (rs.next()) {
+                unidades.add(rs.getString("idGrupo"));
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"error: "+ e.toString());
+        }
+
+        return unidades;
+    }
 
 }
