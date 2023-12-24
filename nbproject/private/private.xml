@@ -4,13 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="Barradas">
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteEditarAct.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteEditarAlumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAltaAlumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAltaAct.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteActividadesFrame.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorAltaAlumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorActAdministrador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteAsignaAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteEliminarAlumAsignado.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Controlador/ControladorRealizaActividad.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteEliminarUnidad.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/Inicio_Administrador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Programacion/Proyectos/Desarrollo-Desktop/CGIProject/src/Vista/DocenteEditarUnidad.java</file>
         </group>
     </open-files>
 </project-private>

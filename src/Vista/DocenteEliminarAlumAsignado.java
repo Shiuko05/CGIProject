@@ -5,17 +5,20 @@
 package Vista;
 
 import Conexion.Conexion;
-import Controlador.ControladorAltaAct;
-import Controlador.ControladorAltaUnidad;
+import Controlador.ControladorAltaAlumno;
+import Controlador.ControladorAltaGrupo;
+import Controlador.ControladorAlumnoAdministrador;
+import Controlador.ControladorAsignaAlumno;
 import Controlador.ControladorGruposAdministrador;
 import Controlador.ControladorMatAdministrador;
-import Controlador.ControladorRealizaActividad;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
@@ -23,23 +26,34 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Usuario
  */
-public class DocenteEditarUnidad extends javax.swing.JFrame {
+public class DocenteEliminarAlumAsignado extends javax.swing.JFrame {
 
     /**
-     * Creates new form DocenteAltaAct
+     * Creates new form DocenteAltaAlumno
      */
-    public DocenteEditarUnidad() {
+    public DocenteEliminarAlumAsignado() {
         initComponents();
         llenarMaterias();
+        llenarGrupo();
     }
     
     private void llenarMaterias(){
-        ControladorGruposAdministrador grupos = new ControladorGruposAdministrador();
-        ArrayList<ControladorMatAdministrador> listaMateria = grupos.getIdMat();
-        jComboBox1.removeAllItems();
+        ControladorAlumnoAdministrador alumno = new ControladorAlumnoAdministrador();
+        ArrayList<ControladorAltaAlumno> listanControl = alumno.getNumcontrol();
+        jComboBox2.removeAllItems();
         
-        for(int i = 0; i < listaMateria.size(); i++){
-            jComboBox1.addItem(listaMateria.get(i).getIdMat());
+        for(int i = 0; i < listanControl.size(); i++){
+            jComboBox2.addItem(listanControl.get(i).getNumcontrol());
+        }
+    }
+    
+    private void llenarGrupo(){
+        ControladorAlumnoAdministrador grupo = new ControladorAlumnoAdministrador();
+        ArrayList<ControladorAltaGrupo> listaGrupo = grupo.getIdGrupo();
+        jComboBox3.removeAllItems();
+        
+        for(int i = 0; i < listaGrupo.size(); i++){
+            jComboBox3.addItem(listaGrupo.get(i).getIdGrupo());
         }
     }
 
@@ -53,24 +67,30 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -116,74 +136,10 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(36, 47, 155));
-        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Inicio");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 21, 125, 32));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, 60));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 70));
-
-        jPanel3.setBackground(new java.awt.Color(245, 245, 245));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(720, 450));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Alta de Unidad");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, -1));
-
-        jTextField4.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jTextField4.setPreferredSize(new java.awt.Dimension(316, 36));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 83, -1, 259));
-
-        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Materia");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
-
-        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Descripción");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 62, -1, -1));
-
-        jComboBox1.setBackground(new java.awt.Color(245, 245, 245));
-        jComboBox1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 142, 36));
-
-        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Número de la Unidad");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Horas Programadas");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-
         jButton1.setBackground(new java.awt.Color(36, 47, 155));
         jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Guardar");
+        jButton1.setText("Inicio");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -191,69 +147,148 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 398, 125, 32));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 21, 125, 32));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, 60));
 
-        jTextField3.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jTextField3.setPreferredSize(new java.awt.Dimension(316, 36));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 142, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 70));
+
+        jPanel4.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(720, 450));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Alta Alumno");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 23, -1, -1));
 
         jTextField2.setBackground(new java.awt.Color(245, 245, 245));
         jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
         jTextField2.setPreferredSize(new java.awt.Dimension(316, 36));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 142, -1));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 83, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(36, 47, 155));
+        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Asignar");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 398, 125, 32));
+
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Apellido Materno");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 220, -1, -1));
+
+        jTextField3.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField3.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 240, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Apellido Paterno");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 137, -1, -1));
+
+        jTextField4.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField4.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 158, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Nombre");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 62, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("No. Control");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 62, -1, -1));
+
+        jTextField7.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField7.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 83, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Título");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 150, -1));
+        jLabel9.setText("Semestre");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 62, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jTextField1.setPreferredSize(new java.awt.Dimension(316, 36));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 142, -1));
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Grupo:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, -1, -1));
 
-        jComboBox.setBackground(new java.awt.Color(245, 245, 245));
-        jComboBox.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jComboBox.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox2.setBackground(new java.awt.Color(245, 245, 245));
+        jComboBox2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxActionPerformed(evt);
+                jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 142, 36));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 83, 120, 36));
 
-        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Unidad");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 130, -1));
+        jComboBox3.setBackground(new java.awt.Color(245, 245, 245));
+        jComboBox3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 36));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jLabel13.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Calificación Final");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 640));
+        jTextField10.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField10.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField10.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 120, -1));
+
+        jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Tipo de Evaluación");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
+
+        jTextField11.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField11.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField11.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 120, -1));
+
+        jLabel15.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Oportunidad");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, -1, -1));
+
+        jTextField12.setBackground(new java.awt.Color(245, 245, 245));
+        jTextField12.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jTextField12.setPreferredSize(new java.awt.Dimension(316, 36));
+        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 120, -1));
+
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 106, -1, -1));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 640));
 
         jMenuBar2.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -522,76 +557,81 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ControladorAltaUnidad CAU = new ControladorAltaUnidad();
-        CAU.modificarUnidadAMateria(this, jComboBox1, jComboBox, jTextField1, jTextField2, jTextField3, jTextField4);
-//        ControladorAltaAct CAA = new ControladorAltaAct();
-//        CAA.insertarActividad(this, jTextField1, jTextField21, jTextField4, jComboBox1, jTextField2, jTextField3);
+        Inicio_Administrador Frame = new Inicio_Administrador();
+        Frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Inicio_Administrador Frame = new Inicio_Administrador();
-        Frame.setVisible(true);
-        this.dispose();
+        ControladorAsignaAlumno caa = new ControladorAsignaAlumno();
+        caa.asignarAlumnoAGrupo(this, jComboBox2, jComboBox3, jTextField10, jTextField11, jTextField12);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-        String idMatSeleccionado = (String) jComboBox1.getSelectedItem();
-
-        if (idMatSeleccionado != null) {
-            // Obtener las unidades asociadas a ese idMat desde ControladorAltaUnidad
-            ArrayList<Integer> unidades = ControladorRealizaActividad.obtenerUnidadesPorIdMat(idMatSeleccionado);
-
-            // Limpiar el jComboBox3
-            jComboBox.removeAllItems();
-
-            // Llenar el jComboBox3 con las unidades obtenidas
-            for (Integer unidad : unidades) {
-                jComboBox.addItem(String.valueOf(unidad));
-            }
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
-        // TODO add your handling code here:
-        String idMateria = jComboBox1.getSelectedItem().toString();
-        String numUni = jComboBox.getSelectedItem().toString();
+        // Obtener el número de control seleccionado del JComboBox
+        String numeroControlSeleccionado = jComboBox2.getSelectedItem().toString();
 
         // Realizar la búsqueda en la base de datos con el número de control seleccionado
         Conexion con = new Conexion();
-        String consultaAlumno = "SELECT idMat, numUni, tituloUni, descUni, hprog FROM Unidad WHERE numUni = ? AND idMat = ?";
+        String consultaAlumno = "SELECT nombAlum, apePatAlum, apeMatAlum, semestreAlum FROM alumno WHERE nControlAlum = ?";
 
         try {
             PreparedStatement psAlumno = con.conecta().prepareStatement(consultaAlumno);
-            psAlumno.setString(1, numUni);
-            psAlumno.setString(2, idMateria);
+            psAlumno.setString(1, numeroControlSeleccionado);
             ResultSet rsAlumno = psAlumno.executeQuery();
 
             if (rsAlumno.next()) {
                 // Si se encuentra el alumno, obtener su nombre, apellido paterno y apellido materno
-                String idMat = rsAlumno.getString("idMat");
-                String tituloUni = rsAlumno.getString("tituloUni");
-                String descUni = rsAlumno.getString("descUni");
-                int hprog = rsAlumno.getInt("hprog");
+                String nombreAlumno = rsAlumno.getString("nombAlum");
+                String apellidoPaterno = rsAlumno.getString("apePatAlum");
+                String apellidoMaterno = rsAlumno.getString("apeMatAlum");
+                int semestre = rsAlumno.getInt("semestreAlum");
 
                 // Insertar los valores en los JTextFields correspondientes
-                jTextField1.setText(tituloUni);
-                jTextField2.setText(numUni);
-                jTextField4.setText(descUni);
-                jTextField3.setText(String.valueOf(hprog));
+                jTextField2.setText(nombreAlumno);
+                jTextField4.setText(apellidoPaterno);
+                jTextField3.setText(apellidoMaterno);
+                jTextField7.setText(String.valueOf(semestre));
             } else {
                 // Si no se encuentra el alumno, limpiar los JTextFields
-                jTextField1.setText("");
                 jTextField2.setText("");
-                jTextField3.setText("");
                 jTextField4.setText("");
-                JOptionPane.showMessageDialog(null, "No se encontró la materia con el identificador seleccionado");
+                jTextField3.setText("");
+                jTextField7.setText("");
+                JOptionPane.showMessageDialog(null, "No se encontró el alumno con el número de control seleccionado");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar la materia: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error al buscar el alumno: " + e.toString());
         }
-    }//GEN-LAST:event_jComboBoxActionPerformed
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
+        Conexion objetoConexion = new Conexion();
+        objetoConexion.conecta(); // Establece la conexión
+        Connection conexion = objetoConexion.conecta();
+
+        if (conexion != null) {
+            try {
+                String sql = "SELECT idGrupo FROM Grupo;";
+                try (PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                     ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while (resultSet.next()) {
+                        String idMateria = resultSet.getString("idGrupo");
+                        comboBoxModel.addElement(idMateria);
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al llenar el combo de grupos: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexión con la base de datos.");
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
@@ -700,7 +740,7 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        DocenteAsignaAlumno Frame = new DocenteAsignaAlumno();
+        DocenteEliminarAlumAsignado Frame = new DocenteEliminarAlumAsignado();
         Frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -749,13 +789,16 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -799,10 +842,13 @@ public class DocenteEditarUnidad extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

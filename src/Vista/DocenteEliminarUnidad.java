@@ -67,7 +67,7 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -203,16 +203,16 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
         jTextField1.setPreferredSize(new java.awt.Dimension(316, 36));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 142, -1));
 
-        jComboBox2.setBackground(new java.awt.Color(245, 245, 245));
-        jComboBox2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox.setBackground(new java.awt.Color(245, 245, 245));
+        jComboBox.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
+        jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jComboBoxActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 142, 36));
+        jPanel2.add(jComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 142, 36));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -510,7 +510,7 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ControladorAltaUnidad CAU = new ControladorAltaUnidad();
-        CAU.eliminarUnidad(this, jComboBox1, jComboBox2);
+        CAU.eliminarUnidad(this, jComboBox1, jComboBox);
 //        ControladorAltaAct CAA = new ControladorAltaAct();
 //        CAA.insertarActividad(this, jTextField1, jTextField21, jTextField4, jComboBox1, jTextField2, jTextField3);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -531,18 +531,18 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
             ArrayList<Integer> unidades = ControladorRealizaActividad.obtenerUnidadesPorIdMat(idMatSeleccionado);
 
             // Limpiar el jComboBox3
-            jComboBox2.removeAllItems();
+            jComboBox.removeAllItems();
 
             // Llenar el jComboBox3 con las unidades obtenidas
             for (Integer unidad : unidades) {
-                jComboBox2.addItem(String.valueOf(unidad));
+                jComboBox.addItem(String.valueOf(unidad));
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
         // TODO add your handling code here:
-        String numUni = jComboBox2.getSelectedItem().toString();
+        String numUni = jComboBox.getSelectedItem().toString();
 
         // Realizar la búsqueda en la base de datos con el número de control seleccionado
         Conexion con = new Conexion();
@@ -574,7 +574,7 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al buscar la materia: " + e.toString());
         }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jComboBoxActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
@@ -732,8 +732,8 @@ public class DocenteEliminarUnidad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

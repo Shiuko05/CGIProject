@@ -94,12 +94,12 @@ public class DBTables {
             
             String sqlUniTable = """                                 
                                  CREATE TABLE IF NOT EXISTS Unidad (
+                                 idUnidad VARCHAR(4) PRIMARY KEY,
                                  idMat VARCHAR(3),
                                  numUni INT,
                                  tituloUni VARCHAR(45),
                                  descUni VARCHAR(250),
                                  hprog INT,
-                                 INDEX idx_numUni (numUni),
                                  FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
             statement.execute(sqlUniTable);
             
@@ -108,13 +108,13 @@ public class DBTables {
                                      idRealiza INT PRIMARY KEY AUTO_INCREMENT,
                                      idActividad INT,
                                      idMat VARCHAR(3),
-                                     idUni INT,
+                                     idUni VARCHAR(4),
                                      idAlumno INT,
                                      califObtAlum INT,
                                      observa VARCHAR(100),
                                      FOREIGN KEY (idActividad) REFERENCES Actividad(idActividad) ON DELETE CASCADE,
                                      FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
-                                     FOREIGN KEY (idUni) REFERENCES Unidad(numUni) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUni) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
                                      FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
             statement.execute(sqlRealizaTable);
             
@@ -122,11 +122,11 @@ public class DBTables {
                                      CREATE TABLE IF NOT EXISTS Obtiene (
                                      idObtiene INT PRIMARY KEY AUTO_INCREMENT,
                                      idMat VARCHAR(3),
-                                     idUni INT,
+                                     idUni VARCHAR(4),
                                      idAlumno INT,
                                      califFinalUni INT,
                                      FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
-                                     FOREIGN KEY (idUni) REFERENCES Unidad(numUni) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUni) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
                                      FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
             statement.execute(sqlObtieneTable);
      

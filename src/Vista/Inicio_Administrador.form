@@ -2,14 +2,14 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="33" red="0" type="rgb"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));&#xa;jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10,4));&#xa;&#xa;    // Configurar espacio a la izquierda y derecha de cada men&#xfa;&#xa;    jMenu3.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu4.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu1.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu2.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;&#xa;&#xa;    Font menuFont = new Font(&quot;Arial Rounded MT&quot;, Font.BOLD, 14);&#xa;    jMenu3.setFont(menuFont);&#xa;    jMenu4.setFont(menuFont);&#xa;    jMenu1.setFont(menuFont);&#xa;    jMenu2.setFont(menuFont);&#xa;&#xa;    // Agregar men&#xfa;s a la barra de men&#xfa;&#xa;    jMenuBar2.add(jMenu3);&#xa;    jMenuBar2.add(jMenu4);&#xa;    jMenuBar2.add(jMenu1);&#xa;    jMenuBar2.add(jMenu2);"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));&#xa;jMenuBar.setLayout(new FlowLayout(FlowLayout.CENTER, 10,4));&#xa;&#xa;    // Configurar espacio a la izquierda y derecha de cada men&#xfa;&#xa;    jMenu3.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu4.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu1.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;    jMenu2.setBorder(new EmptyBorder(0, 10, 0, 10));&#xa;&#xa;&#xa;    Font menuFont = new Font(&quot;Arial Rounded MT&quot;, Font.BOLD, 14);&#xa;    jMenu3.setFont(menuFont);&#xa;    jMenu4.setFont(menuFont);&#xa;    jMenu1.setFont(menuFont);&#xa;    jMenu2.setFont(menuFont);&#xa;&#xa;    // Agregar men&#xfa;s a la barra de men&#xfa;&#xa;    jMenuBar.add(jMenu3);&#xa;    jMenuBar.add(jMenu4);&#xa;    jMenuBar.add(jMenu1);&#xa;    jMenuBar.add(jMenu2);"/>
       </AuxValues>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -220,6 +220,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Eliminar alumno asignado"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem21ActionPerformed"/>
+                      </Events>
                     </MenuItem>
                   </SubComponents>
                 </Menu>
@@ -300,7 +303,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar2"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>

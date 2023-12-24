@@ -63,8 +63,8 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jMenuBar4 = new javax.swing.JMenuBar();
-        jMenu8 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -207,10 +207,10 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
         );
 
-        jMenuBar4.setBackground(new java.awt.Color(0, 51, 153));
+        jMenuBar2.setBackground(new java.awt.Color(0, 51, 153));
 
-        jMenu8.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu8.setText("Alumnos");
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu3.setText("Alumnos");
 
         jMenuItem19.setText("Lista alumnos");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +218,7 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
                 jMenuItem19ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem19);
+        jMenu3.add(jMenuItem19);
 
         jMenuItem1.setText("Alta alumno");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +226,7 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem1);
+        jMenu3.add(jMenuItem1);
 
         jMenuItem10.setText("Editar alumno");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +234,7 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
                 jMenuItem10ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem10);
+        jMenu3.add(jMenuItem10);
 
         jMenuItem9.setText("Eliminar alumno");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -242,9 +242,9 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem9);
+        jMenu3.add(jMenuItem9);
 
-        jMenuBar4.add(jMenu8);
+        jMenuBar2.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Materias");
@@ -396,7 +396,7 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem5);
 
-        jMenuBar4.add(jMenu4);
+        jMenuBar2.add(jMenu4);
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Actividades");
@@ -441,13 +441,13 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem17);
 
-        jMenuBar4.add(jMenu1);
+        jMenuBar2.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Utilerías");
-        jMenuBar4.add(jMenu2);
+        jMenuBar2.add(jMenu2);
 
-        setJMenuBar(jMenuBar4);
+        setJMenuBar(jMenuBar2);
         //jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
         jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10,4));
 
@@ -525,143 +525,12 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        DocenteAltaAlumno Frame = new DocenteAltaAlumno();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
-        DocenteEditarAlumno Frame = new DocenteEditarAlumno();
+        DocenteAluRealizaAct Frame = new DocenteAluRealizaAct();
         Frame.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-        DocenteEliminarAlumno Frame = new DocenteEliminarAlumno();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        DocenteMateriasFrame Frame = new DocenteMateriasFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        DocenteAltaMatFrame Frame = new DocenteAltaMatFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        // TODO add your handling code here:
-        DocenteEditarMat Frame = new DocenteEditarMat();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
-    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        // TODO add your handling code here:
-        DocenteEliminarMat Frame = new DocenteEliminarMat();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem22ActionPerformed
-
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        DocenteUnidadesFrame Frame = new DocenteUnidadesFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
-
-    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
-        // TODO add your handling code here:
-        DocenteAltaUnidad Frame = new DocenteAltaUnidad();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem29ActionPerformed
-
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        DocenteEditarUnidad Frame = new DocenteEditarUnidad();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
-    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-        // TODO add your handling code here:
-        DocenteEliminarUnidad Frame = new DocenteEliminarUnidad();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem24ActionPerformed
-
-    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
-        // TODO add your handling code here:
-        DocenteAltaCalifUnidad Frame = new DocenteAltaCalifUnidad();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem26ActionPerformed
-
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        DocenteGruposFrame Frame = new DocenteGruposFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        DocenteAltaGrupo Frame = new DocenteAltaGrupo();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-        // TODO add your handling code here:
-        DocenteEditarGrupo Frame = new DocenteEditarGrupo();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        DocenteAsignaAlumno Frame = new DocenteAsignaAlumno();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        DocenteHorarioGrupos Frame = new DocenteHorarioGrupos();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        // TODO add your handling code here:
-        DocenteActividadesFrame Frame = new DocenteActividadesFrame();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        DocenteAltaAct Frame = new DocenteAltaAct();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-        DocenteEditarAct Frame = new DocenteEditarAct();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
@@ -670,13 +539,179 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        DocenteAluRealizaAct Frame = new DocenteAluRealizaAct();
+        DocenteEditarAct Frame = new DocenteEditarAct();
         Frame.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        DocenteAltaAct Frame = new DocenteAltaAct();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        DocenteActividadesFrame Frame = new DocenteActividadesFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        DocenteHorarioGrupos Frame = new DocenteHorarioGrupos();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        DocenteAsignaAlumno Frame = new DocenteAsignaAlumno();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        DocenteEditarGrupo Frame = new DocenteEditarGrupo();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        DocenteAltaGrupo Frame = new DocenteAltaGrupo();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        DocenteGruposFrame Frame = new DocenteGruposFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        // TODO add your handling code here:
+        DocenteAltaCalifUnidad Frame = new DocenteAltaCalifUnidad();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        // TODO add your handling code here:
+        DocenteEliminarUnidad Frame = new DocenteEliminarUnidad();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        DocenteEditarUnidad Frame = new DocenteEditarUnidad();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        // TODO add your handling code here:
+        DocenteAltaUnidad Frame = new DocenteAltaUnidad();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        DocenteUnidadesFrame Frame = new DocenteUnidadesFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        DocenteEliminarMat Frame = new DocenteEliminarMat();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        // TODO add your handling code here:
+        DocenteEditarMat Frame = new DocenteEditarMat();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        DocenteAltaMatFrame Frame = new DocenteAltaMatFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        DocenteMateriasFrame Frame = new DocenteMateriasFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        DocenteEliminarAlumno Frame = new DocenteEliminarAlumno();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        DocenteEditarAlumno Frame = new DocenteEditarAlumno();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        DocenteAltaAlumno Frame = new DocenteAltaAlumno();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SobreNosotros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SobreNosotros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SobreNosotros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SobreNosotros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SobreNosotros().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
@@ -691,22 +726,16 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

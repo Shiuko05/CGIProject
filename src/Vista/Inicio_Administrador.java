@@ -65,7 +65,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuBar = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -232,7 +232,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 510));
 
-        jMenuBar2.setBackground(new java.awt.Color(0, 51, 153));
+        jMenuBar.setBackground(new java.awt.Color(0, 51, 153));
 
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Alumnos");
@@ -269,7 +269,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem9);
 
-        jMenuBar2.add(jMenu3);
+        jMenuBar.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Materias");
@@ -407,6 +407,11 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenu7.add(jMenuItem18);
 
         jMenuItem21.setText("Eliminar alumno asignado");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem21);
 
         jMenu5.add(jMenu7);
@@ -421,7 +426,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem5);
 
-        jMenuBar2.add(jMenu4);
+        jMenuBar.add(jMenu4);
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Actividades");
@@ -466,15 +471,15 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem17);
 
-        jMenuBar2.add(jMenu1);
+        jMenuBar.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Utilerías");
-        jMenuBar2.add(jMenu2);
+        jMenuBar.add(jMenu2);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(jMenuBar);
         //jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        jMenuBar2.setLayout(new FlowLayout(FlowLayout.CENTER, 10,4));
+        jMenuBar.setLayout(new FlowLayout(FlowLayout.CENTER, 10,4));
 
         // Configurar espacio a la izquierda y derecha de cada menú
         jMenu3.setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -489,10 +494,10 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenu2.setFont(menuFont);
 
         // Agregar menús a la barra de menú
-        jMenuBar2.add(jMenu3);
-        jMenuBar2.add(jMenu4);
-        jMenuBar2.add(jMenu1);
-        jMenuBar2.add(jMenu2);
+        jMenuBar.add(jMenu3);
+        jMenuBar.add(jMenu4);
+        jMenuBar.add(jMenu1);
+        jMenuBar.add(jMenu2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -660,6 +665,10 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -681,7 +690,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;

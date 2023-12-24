@@ -66,14 +66,15 @@ public class ControladorAltaUnidad {
         }
 
         // Si la materia no existe, se procede a insertarla
-        String consultaInsercion = "INSERT INTO Unidad (idMat, numUni, tituloUni, descUni, hprog) VALUES (?, ?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Unidad (idUnidad, idMat, numUni, tituloUni, descUni, hprog) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
-            csInsercion.setString(1, idMat);
-            csInsercion.setInt(2, numUni);
-            csInsercion.setString(3, tituloUni);
-            csInsercion.setString(4, descUni);
-            csInsercion.setInt(5, hprog);
+            csInsercion.setString(1, generarIdUni(idMat, numUni));
+            csInsercion.setString(2, idMat);
+            csInsercion.setInt(3, numUni);
+            csInsercion.setString(4, tituloUni);
+            csInsercion.setString(5, descUni);
+            csInsercion.setInt(6, hprog);
             
             csInsercion.execute();
 
@@ -99,7 +100,7 @@ public class ControladorAltaUnidad {
         Conexion con = new Conexion();
         
         // Consulta para verificar si el grupo ya existe por su nombre
-        String consultaExistencia = "SELECT COUNT(*) AS count FROM Unidad WHERE numUni = ? AND idMat = ?";
+        String consultaExistencia = "SELECT * FROM Unidad WHERE numUni = ? AND idMat = ?";
         try {
             java.sql.CallableStatement csExistencia = con.conecta().prepareCall(consultaExistencia);
             csExistencia.setInt(1, numUni);
@@ -117,17 +118,38 @@ public class ControladorAltaUnidad {
             JOptionPane.showMessageDialog(null, "Error al verificar existencia de la unidad: " + e.toString());
             return;
         }
+        
+        String consultaIdUnidad = "SELECT idUnidad FROM unidad WHERE numUni = ? AND idMat = ?";
+        String idUnidad = null; // Valor predeterminado en caso de no encontrar el ID
+
+        try {
+            PreparedStatement psIdAlumno = con.conecta().prepareStatement(consultaIdUnidad);
+            psIdAlumno.setString(1, numUniC);
+            psIdAlumno.setString(2, idMat);
+            ResultSet rsIdAlumno = psIdAlumno.executeQuery();
+
+            if (rsIdAlumno.next()) {
+                idUnidad = rsIdAlumno.getString("idUnidad");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró el ID del alumno con ese número de control");
+                return;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el ID del alumno: " + e.toString());
+            return;
+        }
 
         // Si la materia no existe, se procede a insertarla
-        String consultaInsercion = "UPDATE Unidad SET idMat = ?, numUni = ?, tituloUni = ?, descUni = ?, hprog = ? WHERE numUni = ? ";
+        String consultaInsercion = "UPDATE Unidad SET idUnidad = ?, idMat = ?, numUni = ?, tituloUni = ?, descUni = ?, hprog = ? WHERE idUnidad = ? ";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
-            csInsercion.setString(1, idMat);
-            csInsercion.setInt(2, numUni);
-            csInsercion.setString(3, tituloUni);
-            csInsercion.setString(4, descUni);
-            csInsercion.setInt(5, hprog);
-            csInsercion.setString(6, numUniC);
+            csInsercion.setString(1, generarIdUni(idMat, numUni));
+            csInsercion.setString(2, idMat);
+            csInsercion.setInt(3, numUni);
+            csInsercion.setString(4, tituloUni);
+            csInsercion.setString(5, descUni);
+            csInsercion.setInt(6, hprog);
+            csInsercion.setString(7, idUnidad);
             
             csInsercion.execute();
 
@@ -161,6 +183,23 @@ public class ControladorAltaUnidad {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se eliminó, error: "+e.toString());
         }
+    }
+    
+    private String generarIdUni(String idMat, Integer numUni) {
+        // Concatenar los parámetros en una cadena
+        String concatenatedId = idMat + numUni;
+
+        // Verificar y ajustar la longitud máxima a 9 caracteres
+        if (concatenatedId.length() > 4) {
+            concatenatedId = concatenatedId.substring(0, 4); // Limitar la longitud a 9 caracteres si es mayor
+        } else {
+            // Si la longitud es menor a 9, agregar 'X' como relleno
+            while (concatenatedId.length() < 4) {
+                concatenatedId += "X";
+            }
+        }
+
+        return concatenatedId.toUpperCase(); // Convertir a mayúsculas
     }
     
 }
