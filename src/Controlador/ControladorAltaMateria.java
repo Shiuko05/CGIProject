@@ -8,7 +8,6 @@ import Conexion.Conexion;
 import Vista.DocenteGruposFrame;
 import Vista.DocenteMateriasFrame;
 import Vista.Inicio_Administrador;
-import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,13 +52,14 @@ public class ControladorAltaMateria {
         }
 
         // Si la materia no existe, se procede a insertarla
-        String consultaInsercion = "INSERT INTO Materia (idMat, nombMat, hTeoMat, hPraMat) VALUES (?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Materia (idMat, nombMat, hTeoMat, hPraMat, idMaestro) VALUES (?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, idMateria); // Genera un id para la materia
             csInsercion.setString(2, nombreMateria);
             csInsercion.setInt(3, horasTeoricas);
             csInsercion.setInt(4, horasPracticas);
+            csInsercion.setInt(5, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
 
             csInsercion.execute();
 

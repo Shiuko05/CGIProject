@@ -22,18 +22,33 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorAlumnoAdministrador {
     
+    private static String idMaestro;
+
+    public static String getIdMaestro() {
+        return idMaestro;
+    }
+
+    public static void setIdMaestro(String id) {
+        idMaestro = id;
+    }
+    
+    public void guardarIdMaestro(String idMaestro) {
+        setIdMaestro(idMaestro);
+    }
+    
     public void mostrarAlumno(JTable tablaprueba, String grupo) {
+        
         Conexion con = new Conexion();
         DefaultTableModel modelP = new DefaultTableModel(
                 new Object[]{"Nombre", "Apellido Paterno", "Apellido Materno", "Número de Control", "Calificación Final", "Tipo Evaluación", "Oportunidad"},
                 0);
-
+        System.out.println(getIdMaestro());
         try {
-            String sql = "SELECT Alumno.nombAlum, Alumno.apePatAlum, Alumno.apeMatAlum, Alumno.nControlAlum, " +
+            String sql = "SELECT Alumno.idMaestro, Alumno.nombAlum, Alumno.apePatAlum, Alumno.apeMatAlum, Alumno.nControlAlum, " +
              "Inscribe.califFinal, Inscribe.tipoEval, Inscribe.repite " +
              "FROM Alumno " +
              "INNER JOIN Inscribe ON Alumno.idAlumno = Inscribe.idAlumno " +
-             "WHERE Inscribe.idGrupo = '" + grupo + "'";
+             "WHERE Alumno.idMaestro = '" + getIdMaestro() + "' && Inscribe.idGrupo = '" + grupo + "'";
 
             Statement stmt = con.conecta().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -47,6 +62,73 @@ public class ControladorAlumnoAdministrador {
                         rs.getString("califFinal"),
                         rs.getString("tipoEval"),
                         rs.getString("repite")
+                };
+                modelP.addRow(rowData);
+            }
+
+            tablaprueba.setModel(modelP);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar registros" + e.toString());
+        }
+    }
+    
+//    public void mostrarAlumnoTotal(JTable tablaprueba) {
+//        Conexion con = new Conexion();
+//        DefaultTableModel modelP = new DefaultTableModel(
+//                new Object[]{"Nombre", "Apellido Paterno", "Apellido Materno", "Número de Control", "Calificación Final", "Tipo Evaluación", "Oportunidad"},
+//                0);
+//
+//        try {
+//            String sql = "SELECT Alumno.nombAlum, Alumno.apePatAlum, Alumno.apeMatAlum, Alumno.nControlAlum, " +
+//             "Inscribe.califFinal, Inscribe.tipoEval, Inscribe.repite " +
+//             "FROM Alumno " +
+//             "INNER JOIN Inscribe ON Alumno.idAlumno = Inscribe.idAlumno;";
+//
+//            Statement stmt = con.conecta().createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//
+//            while (rs.next()) {
+//                Object[] rowData = {
+//                        rs.getString("nombAlum"),
+//                        rs.getString("apePatAlum"),
+//                        rs.getString("apeMatAlum"),
+//                        rs.getString("nControlAlum"),
+//                        rs.getString("califFinal"),
+//                        rs.getString("tipoEval"),
+//                        rs.getString("repite")
+//                };
+//                modelP.addRow(rowData);
+//            }
+//
+//            tablaprueba.setModel(modelP);
+//
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "Error al mostrar registros" + e.toString());
+//        }
+//    }
+    
+    public void mostrarAlumnoTotal(JTable tablaprueba) {
+        Conexion con = new Conexion();
+        DefaultTableModel modelP = new DefaultTableModel(
+                new Object[]{"Nombre", "Apellido Paterno", "Apellido Materno", "Número de Control", "semestre", "correoAlum"},
+                0);
+
+        try {
+            String sql = "SELECT nombAlum, apePatAlum, apeMatAlum, nControlAlum, semestreAlum, correoAlum FROM Alumno " +
+             "WHERE idMaestro = '" + getIdMaestro() + "'";
+
+            Statement stmt = con.conecta().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Object[] rowData = {
+                        rs.getString("nombAlum"),
+                        rs.getString("apePatAlum"),
+                        rs.getString("apeMatAlum"),
+                        rs.getString("nControlAlum"),
+                        rs.getString("semestreAlum"),
+                        rs.getString("correoAlum")
                 };
                 modelP.addRow(rowData);
             }

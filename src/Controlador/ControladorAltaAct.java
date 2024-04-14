@@ -65,7 +65,7 @@ public class ControladorAltaAct {
 //        }
 
         // Si la materia no existe, se procede a insertarla
-        String consultaInsercion = "INSERT INTO Actividad (tituloAct, tipoAct, descAct, califAsigAct, fechaEntAct, pesoAct) VALUES (?, ?, ?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Actividad (tituloAct, tipoAct, descAct, califAsigAct, fechaEntAct, pesoAct, idMaestro) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, tituloAct); 
@@ -74,6 +74,7 @@ public class ControladorAltaAct {
             csInsercion.setInt(4, califAsigAct);
             csInsercion.setString(5, fechaEntAct);
             csInsercion.setInt(6, pesoAct);
+            csInsercion.setInt(7, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
 
             csInsercion.execute();
 

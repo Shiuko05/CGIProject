@@ -1,0 +1,5 @@
+Usuario: root
+Contraseña: skcaba0305serv
+Base de datos: cgidatabase
+IP: localhost
+Puerto: 3306

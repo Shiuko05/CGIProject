@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import static Controlador.ControladorAlumnoAdministrador.getIdMaestro;
 //import Vista.AltaAlumnos_Alumno;
 //import Vista.Horario_Administrador;
 import java.sql.ResultSet;
@@ -106,7 +107,7 @@ public class ControladorMatAdministrador {
         model.setRowCount(0);
 
         // Consulta SQL para obtener datos de Materia y Grupo
-        String sql = "SELECT * FROM Materia";
+        String sql = "SELECT * FROM Materia WHERE idMaestro = '" + getIdMaestro() + "'";
 
         try {
             Statement st = con.conecta().createStatement();

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conexion;
+import static Controlador.ControladorAlumnoAdministrador.getIdMaestro;
 import Vista.DocenteAlumnosGrupo;
 //import Vista.AltaAlumnos_Alumno;
 //import Vista.Horario_Administrador;
@@ -82,7 +83,8 @@ public class ControladorGruposAdministrador {
         String sql = "SELECT Materia.nombMat, Grupo.idGrupo, Grupo.grupo, COUNT(Inscribe.idAlumno) AS alumnos_inscritos " +
                      "FROM (Materia INNER JOIN Grupo ON Materia.idMat = Grupo.idMat) " +
                      "LEFT JOIN Inscribe ON Grupo.idGrupo = Inscribe.idGrupo " +
-                     "GROUP BY Materia.nombMat, Grupo.idGrupo, Grupo.grupo;";
+                     "WHERE Grupo.idMaestro = '" + getIdMaestro() + "'" +
+                     "GROUP BY Materia.nombMat, Grupo.idGrupo, Grupo.grupo";
 
         try {
             Statement st = con.conecta().createStatement();

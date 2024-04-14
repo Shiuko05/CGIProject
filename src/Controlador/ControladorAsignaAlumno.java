@@ -67,7 +67,7 @@ public class ControladorAsignaAlumno {
         }
 
         // Insertar el alumno en el grupo
-        String consultaInsercion = "INSERT INTO Inscribe (idAlumno, idGrupo, califFinal, tipoEval, repite) VALUES (?,?,?,?,?);";
+        String consultaInsercion = "INSERT INTO Inscribe (idAlumno, idGrupo, califFinal, tipoEval, repite, idMaestro) VALUES (?,?,?,?,?,?);";
 
         try {
             PreparedStatement psInsercion = con.conecta().prepareStatement(consultaInsercion);
@@ -79,6 +79,7 @@ public class ControladorAsignaAlumno {
             psInsercion.setInt(4, tipoEvaluacion);
             int oportunidad = Integer.parseInt(jTextField12.getText());
             psInsercion.setInt(5, oportunidad);
+            psInsercion.setInt(6, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
 
             psInsercion.execute();
 

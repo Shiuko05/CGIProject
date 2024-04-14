@@ -9,7 +9,6 @@ import Vista.DocenteAlumnosFrame;
 import Vista.DocenteGruposFrame;
 import Vista.DocenteMateriasFrame;
 import Vista.Inicio_Administrador;
-import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -208,7 +207,7 @@ public class ControladorAltaGrupo {
 
         // Si la materia no existe, se procede a insertarla
         String consultaInsercion = "INSERT INTO Grupo (idGrupo, idMat, grupo, periodo, anio, hlun, hmar, hmie, hjue, hvie, slun, smar, smie, "
-                + "sjue, svie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "sjue, svie, idMaestro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, generarIdGrupo(idMat, grupo, Integer.parseInt(periodo), Integer.parseInt(anio))); // Genera un id para la materia
@@ -226,6 +225,7 @@ public class ControladorAltaGrupo {
             csInsercion.setString(13, smie);
             csInsercion.setString(14, sjue);
             csInsercion.setString(15, svie);
+            csInsercion.setInt(16, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
             
             csInsercion.execute();
 

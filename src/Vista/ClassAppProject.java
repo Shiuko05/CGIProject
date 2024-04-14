@@ -6,7 +6,9 @@ package Vista;
 
 import Conexion.Conexion;
 import Conexion.DBTables;
+import java.io.File;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,16 +21,15 @@ public class ClassAppProject {
         loginWindow.setVisible(true);
         
         Conexion dbConnection = new Conexion();
-        Connection connection = dbConnection.conecta();
-        DBTables dbTables = new DBTables();
+        Connection connection = dbConnection.getConexion();
         
         // Intentar establecer la conexión
         if (connection != null) {
             System.out.println("Conexión exitosa a la base de datos desde el Main.");
             
             // Crear las tablas si la conexión es exitosa
-            dbTables.createTables(connection);
-            dbTables.crearUsuario();
+            //dbTables.createTables(connection);
+            //dbTables.crearMaestro();
         }
     }
 }

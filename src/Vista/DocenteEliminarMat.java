@@ -11,7 +11,9 @@ import Controlador.ControladorAltaCalifUnidad;
 import Controlador.ControladorAltaMateria;
 import Controlador.ControladorAltaUnidad;
 import Controlador.ControladorAlumnoAdministrador;
+import Controlador.ControladorExportarAlumnos;
 import Controlador.ControladorGruposAdministrador;
+import Controlador.ControladorImportarAlumnos;
 import Controlador.ControladorMatAdministrador;
 import Controlador.ControladorRealizaActividad;
 import Controlador.ControladorUnidadesAdministrador;
@@ -74,6 +76,8 @@ public class DocenteEliminarMat extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -261,6 +265,22 @@ public class DocenteEliminarMat extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem9);
+
+        jMenuItem30.setText("Exportar Alumnos");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem30);
+
+        jMenuItem31.setText("Importar Alumnos");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem31);
 
         jMenuBar2.add(jMenu3);
 
@@ -660,6 +680,18 @@ public class DocenteEliminarMat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        ControladorExportarAlumnos exportar = new ControladorExportarAlumnos();
+        exportar.exportarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+        ControladorImportarAlumnos controlador = new ControladorImportarAlumnos();
+        controlador.importarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -703,6 +735,8 @@ public class DocenteEliminarMat extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

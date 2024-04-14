@@ -4,26 +4,13 @@
  */
 package Vista;
 
-import Actions.ActionTableEvent;
-import Conexion.Conexion;
-import Controlador.ControladorActAdministrador;
-import Controlador.ControladorAltaAlumno;
+
 import Controlador.ControladorAlumnoAdministrador;
-import Controlador.ControladorGruposAdministrador;
-import Controlador.ControladorMatAdministrador;
+import Controlador.ControladorExportarAlumnos;
+import Controlador.ControladorImportarAlumnos;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Usuario
@@ -35,7 +22,10 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
      */
     public DocenteAlumnosFrame() {
         initComponents();
-        llenarAlumnos();
+        
+        ControladorAlumnoAdministrador CAA = new ControladorAlumnoAdministrador();
+        CAA.mostrarAlumnoTotal(jTable1);
+        //llenarAlumnos();
         
         /*Actions.ActionTableEvent event = new ActionTableEvent() {
             @Override
@@ -58,7 +48,7 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         //jTable1.getColumnModel().getColumn(3).setCellEditor(new Actions.ActionTableEditor(event));
     }
     
-    private void llenarAlumnos(){
+    /*private void llenarAlumnos(){
         ControladorAlumnoAdministrador alumno = new ControladorAlumnoAdministrador();
         ArrayList<ControladorAltaAlumno> listanControl = alumno.getNumcontrol();
         jComboBox1.removeAllItems();
@@ -66,7 +56,7 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         for(int i = 0; i < listanControl.size(); i++){
             jComboBox1.addItem(listanControl.get(i).getNumcontrol());
         }
-    }
+    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,14 +69,12 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -94,6 +82,8 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -133,9 +123,6 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/itver-logo.png"))); // NOI18N
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -196,17 +183,6 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Tabla De Alumnos");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jComboBox1.setBackground(new java.awt.Color(245, 245, 245));
-        jComboBox1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(137, 138, 166)));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 142, 36));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(63, 61, 86));
@@ -276,6 +252,22 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem9);
+
+        jMenuItem30.setText("Exportar Alumnos");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem30);
+
+        jMenuItem31.setText("Importar Alumnos");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem31);
 
         jMenuBar2.add(jMenu3);
 
@@ -477,7 +469,7 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         jMenuBar2.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setText("Utilerías");
+        jMenu2.setText("Cerrar Sesión");
         jMenuBar2.add(jMenu2);
 
         setJMenuBar(jMenuBar2);
@@ -518,62 +510,9 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your andling code here:
-//        ControladorAlumnoAdministrador CGA = new ControladorAlumnoAdministrador();
-//        CGA.seleccionarAlumno(this, jTable1);
+        //ControladorAlumnoAdministrador CGA = new ControladorAlumnoAdministrador();
+        //CGA.mostrarAlumno(this, jTable1);
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        // Obtener el ID de la materia seleccionada en el JComboBox
-        String noControlAlumno = jComboBox1.getSelectedItem().toString();
-        Conexion conexion = new Conexion();
-
-        // Consulta para obtener los datos de la materia seleccionada, incluyendo el nombre de la actividad y número de control del alumno
-        String consulta = "SELECT nombAlum, apePatAlum, apeMatAlum, semestreAlum, fechaNacAlum, curpAlum, nControlAlum, correoAlum FROM Alumno WHERE nControlAlum = ?";
-
-        try {
-            PreparedStatement ps = conexion.prepareStatement(consulta);
-            ps.setString(1, noControlAlumno);
-            ResultSet rs = ps.executeQuery();
-
-            // Limpiar la tabla antes de mostrar nuevos datos
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-
-            // Llenar la tabla con los datos obtenidos
-            while (rs.next()) {
-                String nombAlum = rs.getString("nombAlum");
-                String apePatAlum = rs.getString("apePatAlum");
-                String apeMatAlum = rs.getString("apePatAlum");
-                int semestreAlum = rs.getInt("semestreAlum");
-                String fechaNacAlum = rs.getString("fechaNacAlum");
-                String curpAlum = rs.getString("curpAlum");
-                String nControlAlum = rs.getString("nControlAlum");
-                String correoAlum = rs.getString("correoAlum");
-
-                model.addRow(new Object[]{nombAlum, apePatAlum, apeMatAlum, semestreAlum, fechaNacAlum, curpAlum, nControlAlum, correoAlum});
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al obtener los datos: " + ex.getMessage());
-        }
-
-        // Ajustar el tamaño de las columnas
-        //        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-        //        jTable1.getColumnModel().getColumn(1).setPreferredWidth(10);
-        //        jTable1.getColumnModel().getColumn(2).setPreferredWidth(5);
-        //        jTable1.getColumnModel().getColumn(3).setPreferredWidth(10);
-        //        jTable1.getColumnModel().getColumn(4).setPreferredWidth(10);
-        //        jTable1.getColumnModel().getColumn(5).setPreferredWidth(200);
-
-        // Centrar el contenido de las columnas excepto la primera columna
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER); // Establece la alineación al centro
-
-        for (int i = 0; i < 4; i++) {
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         DocenteAlumnosFrame Frame = new DocenteAlumnosFrame();
@@ -727,9 +666,19 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        ControladorExportarAlumnos exportar = new ControladorExportarAlumnos();
+        exportar.exportarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+        ControladorImportarAlumnos controlador = new ControladorImportarAlumnos();
+        controlador.importarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
@@ -766,6 +715,8 @@ public class DocenteAlumnosFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

@@ -4,13 +4,13 @@
  */
 package Vista;
 
-import Actions.ActionTableEvent;
 import Conexion.Conexion;
+import Controlador.ControladorExportarAlumnos;
 import Controlador.ControladorGruposAdministrador;
+import Controlador.ControladorImportarAlumnos;
 import Controlador.ControladorMatAdministrador;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
@@ -69,6 +69,8 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -243,6 +245,22 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem9);
+
+        jMenuItem32.setText("Exportar Alumnos");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem32);
+
+        jMenuItem33.setText("Importar Alumnos");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem33);
 
         jMenuBar2.add(jMenu3);
 
@@ -444,7 +462,12 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         jMenuBar2.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setText("Utilerías");
+        jMenu2.setText("Cerrar Sesión");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar2.add(jMenu2);
 
         setJMenuBar(jMenuBar2);
@@ -677,6 +700,25 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        // TODO add your handling code here:
+        ControladorExportarAlumnos exportar = new ControladorExportarAlumnos();
+        exportar.exportarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        // TODO add your handling code here:
+        ControladorImportarAlumnos controlador = new ControladorImportarAlumnos();
+        controlador.importarCSV("datos.csv");
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        Login Frame = new Login();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -751,6 +793,8 @@ public class DocenteUnidadesFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

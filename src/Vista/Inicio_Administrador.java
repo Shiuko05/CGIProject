@@ -9,6 +9,12 @@ package Vista;
 //import Vista.DocenteHorarioGrupos;
 //import Vista.DocenteMateriasFrame;
 //import Vista.Login;
+import Conexion.Conexion;
+import Controlador.ControladorExportarAlumnos;
+import Controlador.ControladorGruposAdministrador;
+import Controlador.ControladorImportarAlumnos;
+import Controlador.ControladorMatAdministrador;
+import Modelo.ModeloAdministrador;
 import Vista.DocenteActividadesFrame;
 import Vista.DocenteAltaAlumno;
 import Vista.DocenteAltaGrupo;
@@ -21,17 +27,44 @@ import Vista.DocenteUnidadesFrame;
 import Vista.Login;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.Box;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
  *
  * @author ERIKA GARCIA
  */
-public class Inicio_Administrador extends javax.swing.JFrame {
+public final class Inicio_Administrador extends javax.swing.JFrame {
 
+    private String vnombMae;
+    private String vnControlMae;
+    private String vapePatMae;
+    private String vapeMatMae;
+    private String vcorreoMae;
+    
+    ArrayList<String> listaCorreos = new ArrayList<>();
+    
+    
+    public void guardarMaestro(String correo) {
+        this.vcorreoMae = correo;
+        listaCorreos.add(correo);
+        //nombMae.setText(""+vcorreoMae);
+        System.out.println(listaCorreos.get(0));
+        obtenerDatosProfesor(correo);
+    }
+    
     /**
      * Creates new form Inicio_Alumno
      */
@@ -39,7 +72,59 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        String correoGuardado = ModeloAdministrador.getMCorreoMae();
+        String nombreGuardado = ModeloAdministrador.getmNombMae();
+        String nControlGuardado = ModeloAdministrador.getmNControlMae();
+        String patGuardado = ModeloAdministrador.getmPat();
+        String matGuardado = ModeloAdministrador.getmMat();
+        correoMae.setText(""+correoGuardado);
+        nombMae.setText(""+nombreGuardado+" "+patGuardado+" "+matGuardado);
+        nControlMae.setText(""+nControlGuardado);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaActual = LocalDate.now();
+        jLabel11.setText(formatter.format(fechaActual));
     }
+    
+    public ArrayList<String> getCorreos() {
+        return listaCorreos; // Devolver el ArrayList de correos
+    }
+    
+    public void obtenerDatosProfesor(String correoMae) {
+        Conexion con = new Conexion();
+        
+        try {
+            String consulta = "select nombMae, nControlMae, apePatMae, apeMatMae, correoMae "
+                    + "from Maestro where correoMae = '"+correoMae+"'";
+            
+            java.sql.Statement stmt = con.conecta().createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+            
+            if (rs.next()) {
+                // Verificar si el ResultSet tiene datos antes de recuperarlos
+                String cnombMae = rs.getString("nombMae");
+                String nControlMae = rs.getString("nControlMae");
+                String apePatMae = rs.getString("apePatMae");
+                String apeMatMae = rs.getString("apeMatMae");
+                String correoMaestro = rs.getString("correoMae");
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún maestro con el correo proporcionado.");
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"error: "+ e.toString());
+        }
+    }
+    
+    
+    /*private void llenarLabels(){
+        ControladorGruposAdministrador grupos = new ControladorGruposAdministrador();
+        ArrayList<ControladorMatAdministrador> listaMateria = grupos.getIdMat();
+        
+        for(int i = 0; i < listaMateria.size(); i++){
+            addString(listaMateria.get(i).getIdMat());
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,25 +137,26 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        nombMae = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        correoMae = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lbluser = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        nControlMae = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -86,6 +172,8 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -103,6 +191,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem32 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,16 +201,19 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel6.setText("Nombre del docente");
+        nombMae.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jPanel3.add(nombMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 29, 320, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel7.setText("Docente");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 56, 87, -1));
 
-        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Correo");
+        correoMae.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        correoMae.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        correoMae.setText("Correo");
+        jPanel3.add(correoMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 56, 310, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -146,52 +238,14 @@ public class Inicio_Administrador extends javax.swing.JFrame {
             .addComponent(lbluser, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Usuario");
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(296, 296, 296))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(29, 29, 29)))
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel10)
-                        .addGap(17, 17, 17)))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
+        nControlMae.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        nControlMae.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nControlMae.setText("Número de Control");
+        jPanel3.add(nControlMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 29, 180, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 760, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,20 +254,6 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/itver-logo.png"))); // NOI18N
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
-
-        jButton6.setBackground(new java.awt.Color(0, 51, 153));
-        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Cerrar Sesión");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel1.setText("Control de Gestión");
@@ -234,8 +274,19 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         jMenuBar.setBackground(new java.awt.Color(0, 51, 153));
 
+        jMenu9.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu9.setText("Inicio");
+        jMenu9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
+        jMenuBar.add(jMenu9);
+
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Alumnos");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem12.setText("Lista alumnos");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -269,10 +320,27 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem9);
 
+        jMenuItem30.setText("Exportar Alumnos");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem30);
+
+        jMenuItem31.setText("Importar Alumnos");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem31);
+
         jMenuBar.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Materias");
+        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem8.setText("Lista materias");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -344,6 +412,11 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenu8.setText("Calificaciones");
 
         jMenuItem25.setText("Lista calificaciones");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem25);
 
         jMenuItem26.setText("Obtener calificaciones");
@@ -359,6 +432,22 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         jMenuItem28.setText("Eliminar calificaciones");
         jMenu8.add(jMenuItem28);
+
+        jMenuItem33.setText("Exportar calificaciones");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem33);
+
+        jMenuItem34.setText("Importar calificaciones");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem34);
 
         jMenu6.add(jMenu8);
 
@@ -430,6 +519,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Actividades");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem16.setText("Lista actividades");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -474,7 +564,22 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenuBar.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setText("Utilerías");
+        jMenu2.setText("Cuenta");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem32.setText("Cerrar Sesión");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem32);
+
         jMenuBar.add(jMenu2);
 
         setJMenuBar(jMenuBar);
@@ -486,14 +591,17 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         jMenu4.setBorder(new EmptyBorder(0, 10, 0, 10));
         jMenu1.setBorder(new EmptyBorder(0, 10, 0, 10));
         jMenu2.setBorder(new EmptyBorder(0, 10, 0, 10));
+        jMenu9.setBorder(new EmptyBorder(0, 10, 0, 10));
 
         Font menuFont = new Font("Arial Rounded MT", Font.BOLD, 14);
         jMenu3.setFont(menuFont);
         jMenu4.setFont(menuFont);
         jMenu1.setFont(menuFont);
         jMenu2.setFont(menuFont);
+        jMenu9.setFont(menuFont);
 
         // Agregar menús a la barra de menú
+        jMenuBar.add(jMenu9);
         jMenuBar.add(jMenu3);
         jMenuBar.add(jMenu4);
         jMenuBar.add(jMenu1);
@@ -506,12 +614,6 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         //ImageIcon Img = new ImageIcon("C:\\Users\\Dell\\Downloads\\Proyecto_CGI Versión final (2)\\Proyecto_CGI Versión final\\Proyecto_CGI\\Proyecto_CGI\\src\\main\\java\\Imagenes\\Usuario.png");
         //lbluser.setIcon(new ImageIcon (Img.getImage().getScaledInstance(lbluser.getWidth(),lbluser.getHeight(), Image.SCALE_SMOOTH)));
     }//GEN-LAST:event_lbluserAncestorAdded
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Login Frame = new Login();
-        Frame.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         DocenteAltaAlumno Frame = new DocenteAltaAlumno();
@@ -669,18 +771,155 @@ public class Inicio_Administrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Iniciando jMenuItem30ActionPerformed");
+    
+        // Crear un nuevo JFileChooser
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Mostrar el diálogo para seleccionar la ubicación donde guardar el archivo
+        int result = fileChooser.showSaveDialog(this);
+        System.out.println("Resultado del JFileChooser: " + result);
+
+        // Verificar si el usuario ha seleccionado una ubicación y ha confirmado la acción
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Obtener la ruta seleccionada por el usuario
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
+            System.out.println("Archivo seleccionado: " + filePath);
+
+            // Verificar si la extensión del archivo es ".csv", si no lo es, agregarla
+            if (!filePath.toLowerCase().endsWith(".csv")) {
+                filePath += ".csv";
+            }
+            System.out.println("Ruta final del archivo: " + filePath);
+
+            // Llamar al método para exportar utilizando la ruta seleccionada
+            ControladorExportarAlumnos exportar = new ControladorExportarAlumnos();
+            exportar.exportarCSV(filePath);
+        } else {
+            System.out.println("El usuario canceló la selección.");
+        }
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+    
+        // Mostrar el diálogo para seleccionar el archivo CSV a importar
+        int result = fileChooser.showOpenDialog(this);
+
+        // Verificar si el usuario ha seleccionado un archivo y ha confirmado la acción
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado por el usuario
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
+
+            // Verificar si el archivo seleccionado es un archivo CSV
+            if (!filePath.toLowerCase().endsWith(".csv")) {
+                // Mostrar un mensaje de error indicando que el archivo seleccionado no es un archivo CSV válido
+                JOptionPane.showMessageDialog(this, "Por favor, seleccione un archivo CSV.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Salir del método sin realizar la importación
+            }
+
+            // Llamar al método para importar utilizando la ruta del archivo seleccionado
+            ControladorImportarAlumnos controlador = new ControladorImportarAlumnos();
+            controlador.importarCSV(filePath);
+        }
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        // TODO add your handling code here:
+        DocenteCalifUnidades Frame = new DocenteCalifUnidades();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Iniciando jMenuItem30ActionPerformed");
+    
+        // Crear un nuevo JFileChooser
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Mostrar el diálogo para seleccionar la ubicación donde guardar el archivo
+        int result = fileChooser.showSaveDialog(this);
+        System.out.println("Resultado del JFileChooser: " + result);
+
+        // Verificar si el usuario ha seleccionado una ubicación y ha confirmado la acción
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Obtener la ruta seleccionada por el usuario
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
+            System.out.println("Archivo seleccionado: " + filePath);
+
+            // Verificar si la extensión del archivo es ".csv", si no lo es, agregarla
+            if (!filePath.toLowerCase().endsWith(".csv")) {
+                filePath += ".csv";
+            }
+            System.out.println("Ruta final del archivo: " + filePath);
+
+            // Llamar al método para exportar utilizando la ruta seleccionada
+            ControladorExportarAlumnos exportar = new ControladorExportarAlumnos();
+            exportar.exportarActCSV(filePath);
+        } else {
+            System.out.println("El usuario canceló la selección.");
+        }
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+    
+        // Mostrar el diálogo para seleccionar el archivo CSV a importar
+        int result = fileChooser.showOpenDialog(this);
+
+        // Verificar si el usuario ha seleccionado un archivo y ha confirmado la acción
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado por el usuario
+            File selectedFile = fileChooser.getSelectedFile();
+            String filePath = selectedFile.getAbsolutePath();
+
+            // Verificar si el archivo seleccionado es un archivo CSV
+            if (!filePath.toLowerCase().endsWith(".csv")) {
+                // Mostrar un mensaje de error indicando que el archivo seleccionado no es un archivo CSV válido
+                JOptionPane.showMessageDialog(this, "Por favor, seleccione un archivo CSV.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Salir del método sin realizar la importación
+            }
+
+            // Llamar al método para importar utilizando la ruta del archivo seleccionado
+            ControladorImportarAlumnos controlador = new ControladorImportarAlumnos();
+            controlador.importarActCSV(filePath);
+        }
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        // TODO add your handling code here:
+        Login Frame = new Login();
+        Frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+        // TODO add your handling code here:
+        Inicio_Administrador inicio = new Inicio_Administrador();
+        inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu9MouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel correoMae;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -690,6 +929,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -714,6 +954,11 @@ public class Inicio_Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -725,5 +970,7 @@ public class Inicio_Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbluser;
+    private javax.swing.JLabel nControlMae;
+    private javax.swing.JLabel nombMae;
     // End of variables declaration//GEN-END:variables
 }

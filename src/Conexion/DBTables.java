@@ -7,10 +7,6 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.mysql.cj.jdbc.CallableStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
 /**
  *
  * @author usuario
@@ -23,6 +19,16 @@ public class DBTables {
             statement = connection.createStatement();
 
             statement.executeUpdate("USE CGIDataBase");
+            
+            String sqlMaeTable = """
+                                 CREATE TABLE IF NOT EXISTS Maestro (
+                                 idMaestro INT PRIMARY KEY AUTO_INCREMENT,
+                                 nombMae VARCHAR(30) NOT NULL,
+                                 nControlMae VARCHAR(9),
+                                 apePatMae VARCHAR(30),
+                                 apeMatMae VARCHAR(30),
+                                 paswd VARCHAR(20));""";
+            statement.execute(sqlMaeTable);
 
             String sqlAlumnTable = """
                                    CREATE TABLE IF NOT EXISTS Alumno (
@@ -35,8 +41,9 @@ public class DBTables {
                                    curpAlum VARCHAR(18), 
                                    nControlAlum VARCHAR(9), 
                                    correoAlum VARCHAR(80),
-                                   fotoAlum BLOB, 
-                                   paswd INT);""";
+                                   paswd INT,
+                                   idMaestro INT,
+                                   FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE);""";
             statement.execute(sqlAlumnTable);
 
             String sqlMatTable = """
@@ -45,8 +52,9 @@ public class DBTables {
                                 nombMat VARCHAR(40),
                                 hTeoMat INT,
                                 hPraMat INT,
-                                CHECK (LENGTH(idMat) = 3)
-                                )""";
+                                CHECK (LENGTH(idMat) = 3),
+                                idMaestro INT,
+                                FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE);""";
             statement.execute(sqlMatTable);
 
             String sqlGruTable = """
@@ -66,7 +74,9 @@ public class DBTables {
                                  smie VARCHAR(8),
                                  sjue VARCHAR(8),
                                  svie VARCHAR(8),
-                                 FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
+                                 idMaestro INT,
+                                 FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
+                                 FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE);""";
             statement.execute(sqlGruTable);
 
             String sqlInsTable = """
@@ -77,6 +87,8 @@ public class DBTables {
                                  califFinal INT,
                                  tipoEval VARCHAR(1),
                                  repite VARCHAR(1),
+                                 idMaestro INT,
+                                 FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE,
                                  FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE,
                                  FOREIGN KEY (idGrupo) REFERENCES Grupo(idGrupo) ON DELETE CASCADE);""";
             statement.execute(sqlInsTable);
@@ -89,7 +101,9 @@ public class DBTables {
                                  descAct VARCHAR(100),
                                  califAsigAct INT,
                                  fechaEntAct DATE,
-                                 pesoAct INT);""";
+                                 pesoAct INT,
+                                 idMaestro INT,
+                                 FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE);""";
             statement.execute(sqlActTable);
             
             String sqlUniTable = """                                 
@@ -100,6 +114,8 @@ public class DBTables {
                                  tituloUni VARCHAR(45),
                                  descUni VARCHAR(250),
                                  hprog INT,
+                                 idMaestro INT,
+                                 FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE,
                                  FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE);""";
             statement.execute(sqlUniTable);
             
@@ -108,13 +124,15 @@ public class DBTables {
                                      idRealiza INT PRIMARY KEY AUTO_INCREMENT,
                                      idActividad INT,
                                      idMat VARCHAR(3),
-                                     idUni VARCHAR(4),
+                                     idUnidad VARCHAR(4),
                                      idAlumno INT,
                                      califObtAlum INT,
                                      observa VARCHAR(100),
+                                     idMaestro INT,
+                                     FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE,
                                      FOREIGN KEY (idActividad) REFERENCES Actividad(idActividad) ON DELETE CASCADE,
                                      FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
-                                     FOREIGN KEY (idUni) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUnidad) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
                                      FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
             statement.execute(sqlRealizaTable);
             
@@ -122,14 +140,16 @@ public class DBTables {
                                      CREATE TABLE IF NOT EXISTS Obtiene (
                                      idObtiene INT PRIMARY KEY AUTO_INCREMENT,
                                      idMat VARCHAR(3),
-                                     idUni VARCHAR(4),
+                                     idUnidad VARCHAR(4),
                                      idAlumno INT,
                                      califFinalUni INT,
+                                     idMaestro INT,
+                                     FOREIGN KEY (idMaestro) REFERENCES Maestro(idMaestro) ON DELETE CASCADE,
                                      FOREIGN KEY (idMat) REFERENCES Materia(idMat) ON DELETE CASCADE,
-                                     FOREIGN KEY (idUni) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
+                                     FOREIGN KEY (idUnidad) REFERENCES Unidad(idUnidad) ON DELETE CASCADE,
                                      FOREIGN KEY (idAlumno) REFERENCES Alumno(idAlumno) ON DELETE CASCADE);""";
             statement.execute(sqlObtieneTable);
-     
+            
         } catch (SQLException error) {
             System.out.println("Error al crear las tablas: " + error.getMessage());
         } finally {
@@ -143,40 +163,40 @@ public class DBTables {
         }
     }
     
-    public void crearUsuario() {
-        Conexion con = new Conexion();
-        String consultaVerificacion = "SELECT COUNT(*) FROM Alumno WHERE idAlumno = ?";
-        String consultaInsercion = "INSERT INTO Alumno(idAlumno, nombAlum, nControlAlum, paswd) VALUES (?, ?, ?, ?)";
-
-        try {
-            PreparedStatement psVerificacion = con.conecta().prepareStatement(consultaVerificacion);
-            psVerificacion.setInt(1, 1); // Cambiar "admin" por el valor que deseas verificar
-            ResultSet rs = psVerificacion.executeQuery();
-            rs.next();
-            int count = rs.getInt(1);
-
-            if (count > 0) {
-                // El usuario ya existe
-            } else {
-                PreparedStatement psInsercion = con.conecta().prepareStatement(consultaInsercion);
-                psInsercion.setInt(1, 1);
-                psInsercion.setString(2, "administrador");
-                psInsercion.setString(3, "admin");
-                psInsercion.setInt(4, 12345);
-
-                int filasAfectadas = psInsercion.executeUpdate();
-
-                if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "Usuario creado exitosamente");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al crear usuario");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al crear usuario");
-        }
-    }
+//    public void crearMaestro() {
+//        Conexion con = new Conexion();
+//        String consultaVerificacion = "SELECT COUNT(*) FROM Maestro WHERE idMaestro = ?";
+//        String consultaInsercion = "INSERT INTO Maestro(idMaestro, nombMae, nControlMae, paswd) VALUES (?, ?, ?, ?)";
+//
+//        try {
+//            PreparedStatement psVerificacion = con.conecta().prepareStatement(consultaVerificacion);
+//            psVerificacion.setInt(1, 1); // Cambiar "admin" por el valor que deseas verificar
+//            ResultSet rs = psVerificacion.executeQuery();
+//            rs.next();
+//            int count = rs.getInt(1);
+//
+//            if (count > 0) {
+//                // El usuario ya existe
+//            } else {
+//                PreparedStatement psInsercion = con.conecta().prepareStatement(consultaInsercion);
+//                psInsercion.setInt(1, 1);
+//                psInsercion.setString(2, "administrador");
+//                psInsercion.setString(3, "admin");
+//                psInsercion.setInt(4, 12345);
+//
+//                int filasAfectadas = psInsercion.executeUpdate();
+//
+//                if (filasAfectadas > 0) {
+//                    JOptionPane.showMessageDialog(null, "Usuario creado exitosamente");
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Error al crear usuario");
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(null, "Error al crear usuario");
+//        }
+//    }
 
 
 }

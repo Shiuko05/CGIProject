@@ -28,10 +28,12 @@ public class ControladorRealizaActividad {
         // Obtener los datos de los campos de texto
         String tituloAct = jComboBox1.getSelectedItem().toString();
         String idMat = jComboBox2.getSelectedItem().toString();
-        int idUni = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+        int idUnidad = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         int noControlAlumno = Integer.parseInt(jComboBox4.getSelectedItem().toString());
         int califObtAlum = Integer.parseInt(jTextField1.getText());
         String observa = jTextField2.getText();
+        
+        String idUni = idMat + idUnidad;
         
         Conexion con = new Conexion();
         
@@ -75,15 +77,16 @@ public class ControladorRealizaActividad {
             return;
         }
 
-        String consultaInsercion = "INSERT INTO Realiza (idActividad, idMat, idUni, idAlumno, califObtAlum, observa) VALUES (?, ?, ?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Realiza (idActividad, idMat, idUnidad, idAlumno, califObtAlum, observa, idMaestro) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setInt(1, idActividad);
             csInsercion.setString(2, idMat);
-            csInsercion.setInt(3, idUni);
+            csInsercion.setString(3, idUni);
             csInsercion.setInt(4, idAlumno);
             csInsercion.setInt(5, califObtAlum);
             csInsercion.setString(6, observa);
+            csInsercion.setInt(7, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
             
             csInsercion.execute();
 

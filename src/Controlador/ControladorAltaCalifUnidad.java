@@ -24,15 +24,19 @@ public class ControladorAltaCalifUnidad {
     public void calificarUnidadAlumno(JFrame frame, JComboBox jComboBox2, JComboBox jComboBox3, JComboBox jComboBox4, JTextField jTextField1) {
         // Obtener los datos de los campos de texto
         String idMat = jComboBox2.getSelectedItem().toString();
-        int idUni = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+        String idUni = jComboBox3.getSelectedItem().toString();
         int noControlAlumno = Integer.parseInt(jComboBox4.getSelectedItem().toString());
         int califFinalUni = Integer.parseInt(jTextField1.getText());
+        
+        String idUnidad = idMat + idUni;
+
         
         Conexion con = new Conexion();
         
         // Obtener el ID del Alumno
         String consultaIdAlumno = "SELECT idAlumno FROM alumno WHERE nControlAlum = ?";
         int idAlumno = -1; // Valor predeterminado en caso de no encontrar el ID
+        
 
         try {
             PreparedStatement psIdAlumno = con.conecta().prepareStatement(consultaIdAlumno);
@@ -50,13 +54,14 @@ public class ControladorAltaCalifUnidad {
             return;
         }
 
-        String consultaInsercion = "INSERT INTO Obtiene (idMat, idUni, idAlumno, califFinalUni) VALUES (?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Obtiene (idMat, idUnidad, idAlumno, califFinalUni, idMaestro) VALUES (?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, idMat);
-            csInsercion.setInt(2, idUni);
+            csInsercion.setString(2, idUnidad);
             csInsercion.setInt(3, idAlumno);
             csInsercion.setInt(4, califFinalUni);
+            csInsercion.setInt(5, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
             
             csInsercion.execute();
 
@@ -66,6 +71,8 @@ public class ControladorAltaCalifUnidad {
             frame.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al agregar la calificacion a la unidad del alumno:  " + e.toString());
+            System.out.println("Error al agregar la calificacion a la unidad del alumno:  " + e.toString());
+
         }
     }
 }

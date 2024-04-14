@@ -133,7 +133,7 @@ public class ControladorAltaAlumno {
         }
 
         // Si el número de control no existe, se procede a insertar el alumno
-        String consultaInsercion = "INSERT INTO alumno (nombAlum, apePatAlum, apeMatAlum, semestreAlum, fechaNacAlum, curpAlum, nControlAlum, correoAlum) VALUES (?,?,?,?,?,?,?,?);";
+        String consultaInsercion = "INSERT INTO alumno (nombAlum, apePatAlum, apeMatAlum, semestreAlum, fechaNacAlum, curpAlum, nControlAlum, correoAlum, idMaestro) VALUES (?,?,?,?,?,?,?,?, ?);";
         try {
             CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, getNombAlum());
@@ -144,7 +144,7 @@ public class ControladorAltaAlumno {
             csInsercion.setString(6, getCurp());   
             csInsercion.setString(7, getNumcontrol());  
             csInsercion.setString(8, getCorreo());
-
+            csInsercion.setInt(9, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
             csInsercion.execute();
 
             JOptionPane.showMessageDialog(null, "El alumno se agregó exitosamente");

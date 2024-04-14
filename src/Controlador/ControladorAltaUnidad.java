@@ -66,7 +66,7 @@ public class ControladorAltaUnidad {
         }
 
         // Si la materia no existe, se procede a insertarla
-        String consultaInsercion = "INSERT INTO Unidad (idUnidad, idMat, numUni, tituloUni, descUni, hprog) VALUES (?, ?, ?, ?, ?, ?)";
+        String consultaInsercion = "INSERT INTO Unidad (idUnidad, idMat, numUni, tituloUni, descUni, hprog, idMaestro) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             java.sql.CallableStatement csInsercion = con.conecta().prepareCall(consultaInsercion);
             csInsercion.setString(1, generarIdUni(idMat, numUni));
@@ -75,6 +75,7 @@ public class ControladorAltaUnidad {
             csInsercion.setString(4, tituloUni);
             csInsercion.setString(5, descUni);
             csInsercion.setInt(6, hprog);
+            csInsercion.setInt(7, Integer.parseInt(ControladorAlumnoAdministrador.getIdMaestro()));
             
             csInsercion.execute();
 
